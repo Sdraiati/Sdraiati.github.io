@@ -3,6 +3,11 @@ const degreesToRads = deg => (deg * Math.PI) / 180.0;
 //inverte il segno per adattarsi all'asse y inverso del canvas
 const invertYaxis = angle => -angle;
 
+function generateRandomColor() {
+    // Generate a random hexadecimal color code
+    return '#' + Math.floor(Math.random()*16777215).toString(16);
+}
+
 class Cake {
     static total_angle = 360;
     #x;
@@ -22,6 +27,9 @@ class Cake {
 
         this.#context.beginPath();
         this.#context.arc(this.#x, this.#y, this.#radius, 0, 2 * Math.PI);
+
+        //ctx.fillStyle = generateRandomColor();
+        //ctx.fill();
     }
 
     getTotalData(){ return this.#total_data; }
@@ -65,63 +73,21 @@ class Cake {
     }
 }
 
-/*
-import { degreesToRads } from "./Cake";
-import { invertYaxis } from "./Cake";
-import { Cake } from "./Cake";
-*/
-
-/*
-function createCircle(ctx, x, y, radius) {
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, 2 * Math.PI);
-}
-//funzione per creare le linee dello slice
-function createSliceLine(ctx, x_circle, y_circle, radius, angle) {
-    inv_angle = invertYaxis(angle);
-    rad_angle = degreesToRads(inv_angle);
-    ctx.moveTo(x_circle, y_circle);
-    x_dest = x_circle + radius * Math.cos(rad_angle);
-    y_dest = y_circle + radius * Math.sin(rad_angle);
-    ctx.lineTo(x_dest, y_dest);
-}
-
-//x_prev e y_prev sono le coordinate del punto più a destra sulla circonferenza della slice precedente
-function createSlice(ctx, x_circle, y_circle, radius, x_prev, y_prev, angle) {
-    createSliceLine(ctx, x_circle, y_circle, radius, 0, 0);
-    createSliceLine(ctx, x_circle, y_circle, radius, angle, x_prev, y_prev);
-    prev_angle = angle; angle = -90;
-    createSliceLine(ctx, x_circle, y_circle, radius, prev_angle+angle, x_prev, y_prev);
-}
-*/
-
 //circle coordinates
 let c = document.getElementById("myCanvas");
 let ctx = c.getContext("2d");
 let offset_x = 500;
 let offset_y = 250;
 let radius = 200;
-/*
-//TO REMOVE
-x_prev = offset_x+radius; y_prev = offset_y;
 
-createCircle(ctx, offset_x, offset_y, radius);
-createSlice(ctx, offset_x, offset_y, radius, x_prev, y_prev, -45);
+let cake = new Cake(offset_x, offset_y, radius, ctx, 2000);
+
+/*
+ctx.arc(offset_x, offset_y, radius, 0, degreesToRads(45));
+ctx.fill();
 ctx.stroke();
 */
-//PREV 27/12
-let cake = new Cake(offset_x, offset_y, radius, ctx, 2000);
-/*
-cake.draw();
-cake.addSlice(45);
-cake.draw();
-cake.addSlice(45);
-cake.draw();
-cake.addSlice(180);
-cake.draw();
-cake.addSlice(20);
-cake.draw();
-*/
+
 cake.addSliceFromData(1000);
 cake.addSliceFromData(50)
 cake.addSliceFromData(100)
