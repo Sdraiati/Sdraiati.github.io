@@ -27,9 +27,6 @@ class Cake {
 
         this.#context.beginPath();
         this.#context.arc(this.#x, this.#y, this.#radius, 0, 2 * Math.PI);
-
-        //ctx.fillStyle = generateRandomColor();
-        //ctx.fill();
     }
 
     getTotalData(){ return this.#total_data; }
@@ -58,7 +55,14 @@ class Cake {
         
         if (angle > this.#remaining_angle) return -1;
         else{
-            this.createSliceLine(Cake.total_angle-this.#remaining_angle + angle);
+            this.createSliceLine(Cake.total_angle-this.#remaining_angle);           //first slice line
+            this.createSliceLine(Cake.total_angle-this.#remaining_angle + angle);   //second slice line
+
+            //this.#context.fillStyle = generateRandomColor();
+            //this.#context.fill();
+            //this.#context.closePath();
+            //this.#context.beginPath();
+
             this.#remaining_angle -= angle;
             return 0;
         }
