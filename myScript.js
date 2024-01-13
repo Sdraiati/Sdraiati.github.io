@@ -55,8 +55,8 @@ class Cake {
         
         if (angle > this.#remaining_angle) return -1;
         else{
-            this.createSliceLine(Cake.total_angle-this.#remaining_angle);           //first slice line
-            this.createSliceLine(Cake.total_angle-this.#remaining_angle + angle);   //second slice line
+            this.createSliceLine(Cake.total_angle-this.#remaining_angle);           //start slice line
+            this.createSliceLine(Cake.total_angle-this.#remaining_angle + angle);   //end slice line
 
             //this.#context.fillStyle = generateRandomColor();
             //this.#context.fill();
