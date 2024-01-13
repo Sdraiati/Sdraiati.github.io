@@ -50,12 +50,15 @@ class Cake {
     //property to add the slice
     //angle is the angle of the slice
     addSlice(angle) {
-        //if it's the first slice, we create the horizontal line
-        if (this.#remaining_angle == 360) this.createSliceLine(0);
-        
         if (angle > this.#remaining_angle) return -1;
         else{
             this.createSliceLine(Cake.total_angle-this.#remaining_angle);           //start slice line
+
+            this.#context.fillStyle = generateRandomColor();
+            this.#context.fill();
+            this.#context.closePath();
+            this.#context.beginPath();
+
             this.createSliceLine(Cake.total_angle-this.#remaining_angle + angle);   //end slice line
 
             //this.#context.fillStyle = generateRandomColor();
@@ -93,6 +96,6 @@ ctx.stroke();
 */
 
 cake.addSliceFromData(1000);
-cake.addSliceFromData(50)
-cake.addSliceFromData(100)
+//cake.addSliceFromData(50)
+//cake.addSliceFromData(100)
 cake.draw();
