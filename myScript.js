@@ -18,7 +18,7 @@ class Cake {
     #total_data;        //total data (corresponding to 100%)
     #used_colors;            //colors of the slices
     
-    constructor(x, y, radius, ctx, total, used_angle=0) {
+    constructor(x, y, radius, ctx, total=100, used_angle=0) {
         this.#used_angle = used_angle;
         this.#x = x;
         this.#y = y;
@@ -39,6 +39,15 @@ class Cake {
     setTotalData(total){ this.#total_data = total; }
 
     getUsedColors(){ return this.#used_colors; }
+
+    //return a color code which is not used
+    getColor() {
+        let color = generateRandomColor();
+        while (this.#used_colors.includes(color)) {
+            color = generateRandomColor();
+        }
+        return color;
+    }
 
     //property to create the line of the slice
     //angle is relative to x axis
@@ -72,7 +81,7 @@ class Cake {
             this.#context.arc(this.#x, this.#y, this.#radius, start_angle, end_angle);                               //draw the arc
 
             //add color to the slice
-            this.#used_colors.push(generateRandomColor());
+            this.#used_colors.push(this.getColor());
             this.#context.fillStyle = this.#used_colors[this.#used_colors.length-1];
             this.#context.fill();
 
@@ -83,8 +92,6 @@ class Cake {
             return 0;
         }
     }
-
-    draw(){ this.#context.stroke(); }
 
     //add a slice from a certain amount of data
     addSliceFromData(data){
