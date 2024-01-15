@@ -12,15 +12,57 @@ function generateRandomColor() {
     return '#' + color;
 }
 
+class Legend {
+    #x;
+    #y;
+    #context;
+    #colors;
+    #items;
+
+    constructor(ctx, colors, items, x=800, y=50, width=150, height=200){
+        this.#x = x;
+        this.#y = y;
+        this.#context = ctx;
+        this.#colors = colors;
+        this.#items = items;
+
+        //draw the rectangle border
+        this.#context.beginPath();
+        this.#context.rect(this.#x, this.#y, width, height);
+        this.#context.closePath();
+        this.#context.stroke();
+
+        //draw the items
+        let item_x = this.#x + 10;
+        let item_y = this.#y + 10;
+        for (let i = 0; i < this.#colors.length-1; i++) {
+            this.insertItem(item_x, item_y, this.#colors[i+1], this.#items[i]); //colors, start from 1 to skip the background color
+            item_y += 30;
+        }
+    }
+
+    insertItem(x, y, color, text, width=20, height=20){
+        this.#context.beginPath();
+        this.#context.rect(x, y, width, height);
+        this.#context.fillStyle = color;
+        this.#context.fill();
+        this.#context.font = "20px Arial";
+        this.#context.fillText(text, x+30, y+20);
+        this.#context.closePath();
+        this.#context.stroke();
+    }
+}
+
 class Cake {
     static total_angle = 360;
     #x;
     #y;
     #radius;
     #used_angle;   //remaining angle of the cake
-    #context;           //context of the canvas
-    #total_data;        //total data (corresponding to 100%)
-    #used_colors;            //colors of the slices
+    #context;      //context of the canvas
+    #total_data;   //total data (corresponding to 100%)
+    #used_colors;  //colors of the slices
+    #legend;
     
     constructor(x, y, radius, ctx, total=100, used_angle=0) {
         this.#used_angle = used_angle;
@@ -104,6 +146,10 @@ class Cake {
         let angle = (data/this.#total_data)*360;
         return this.addSlice(angle);
     }
+
+    createLegend(items){
+        this.#legend = new Legend(this.#context, this.#used_colors, items);
+    }
 }
 
 //circle coordinates
@@ -113,8 +159,12 @@ let offset_x = 500;
 let offset_y = 250;
 let radius = 200;
 
-let cake = new Cake(offset_x, offset_y, radius, ctx, 2000);
+let cake = new Cake(offset_x, offset_y, radius, ctx, 100);
 
-cake.addSliceFromData(1000);
-cake.addSliceFromData(50)
-cake.addSliceFromData(100)
+cake.addSliceFromData(50);
+cake.addSliceFromData(5);
+cake.addSliceFromData(10);
+cake.addSliceFromData(35);
+
+items = ["item1", "item2", "item3", "item4"];
+cake.createLegend(items);
