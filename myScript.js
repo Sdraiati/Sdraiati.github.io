@@ -13,12 +13,12 @@ class Cake {
     #x;
     #y;
     #radius;
-    #remaining_angle;   //remaining angle of the cake
+    #used_angle;   //remaining angle of the cake
     #context;           //context of the canvas
     #total_data;        //total data (corresponding to 100%)
     
-    constructor(x, y, radius, ctx, total, remaining_angle=360) {
-        this.#remaining_angle = remaining_angle;
+    constructor(x, y, radius, ctx, total, used_angle=0) {
+        this.#used_angle = used_angle;
         this.#x = x;
         this.#y = y;
         this.#radius = radius;
@@ -39,9 +39,7 @@ class Cake {
     //property to create the line of the slice
     //angle is relative to x axis
     createSliceLine(angle) {
-        console.log("angle: " + angle);
         let inv_angle = invertYaxis(angle);
-        console.log("inv angle: " + inv_angle);
         let rad_angle = degreesToRads(inv_angle);
 
         this.#context.moveTo(this.#x, this.#y);
@@ -58,14 +56,14 @@ class Cake {
     addSlice(angle) {
         this.#context.closePath();
         this.#context.stroke();
-        if (angle > this.#remaining_angle) return -1;
+
+        if (angle > Cake.total_angle-this.#used_angle){console.log("Overflow usable angle"); return -1;}
         else{
-            //print log
             this.#context.beginPath();
 
-            let end_angle = this.createSliceLine(Cake.total_angle-this.#remaining_angle);           //start slice line
+            let end_angle = this.createSliceLine(this.#used_angle);           //start slice line
 
-            let start_angle = this.createSliceLine(Cake.total_angle-this.#remaining_angle + angle);     //end slice line
+            let start_angle = this.createSliceLine(this.#used_angle + angle);     //end slice line
 
             this.#context.arc(this.#x, this.#y, this.#radius, start_angle, end_angle);                               //draw the arc
 
@@ -74,7 +72,7 @@ class Cake {
             this.#context.closePath();
 
             this.#context.stroke();
-            this.#remaining_angle -= angle;
+            this.#used_angle += angle;
             return 0;
         }
     }
