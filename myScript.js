@@ -16,6 +16,7 @@ class Cake {
     #used_angle;   //remaining angle of the cake
     #context;           //context of the canvas
     #total_data;        //total data (corresponding to 100%)
+    #used_colors;            //colors of the slices
     
     constructor(x, y, radius, ctx, total, used_angle=0) {
         this.#used_angle = used_angle;
@@ -24,17 +25,20 @@ class Cake {
         this.#radius = radius;
         this.#context = ctx;
         this.#total_data = total;
+        this.#used_colors = ["#ffffff"];
 
         this.#context.beginPath();
         this.#context.arc(this.#x, this.#y, this.#radius, 0, 2 * Math.PI);
-        //colore riempimento
-        this.#context.fillStyle = generateRandomColor();
+        //color of the cake
+        this.#context.fillStyle = this.#used_colors[0];
         this.#context.fill();
     }
 
     getTotalData(){ return this.#total_data; }
 
     setTotalData(total){ this.#total_data = total; }
+
+    getUsedColors(){ return this.#used_colors; }
 
     //property to create the line of the slice
     //angle is relative to x axis
@@ -67,11 +71,14 @@ class Cake {
 
             this.#context.arc(this.#x, this.#y, this.#radius, start_angle, end_angle);                               //draw the arc
 
-            this.#context.fillStyle = generateRandomColor();
+            //add color to the slice
+            this.#used_colors.push(generateRandomColor());
+            this.#context.fillStyle = this.#used_colors[this.#used_colors.length-1];
             this.#context.fill();
-            this.#context.closePath();
 
+            this.#context.closePath();
             this.#context.stroke();
+
             this.#used_angle += angle;
             return 0;
         }
@@ -98,4 +105,5 @@ let cake = new Cake(offset_x, offset_y, radius, ctx, 2000);
 cake.addSliceFromData(1000);
 cake.addSliceFromData(50)
 cake.addSliceFromData(100)
-cake.draw();
+
+cake.getUsedColors().forEach(color => console.log(color));
