@@ -5,7 +5,11 @@ const invertYaxis = angle =>360 -angle;
 
 function generateRandomColor() {
     // Generate a random hexadecimal color code
-    return '#' + Math.floor(Math.random()*16777215).toString(16);
+    let color = Math.floor(Math.random()*16777215).toString(16);
+    while (color.length < 6) {
+        color = "0" + color;
+    }
+    return '#' + color;
 }
 
 class Cake {
@@ -42,10 +46,11 @@ class Cake {
 
     //return a color code which is not used
     getColor() {
-        let color = generateRandomColor();
-        while (this.#used_colors.includes(color)) {
+        let color;
+        do {
             color = generateRandomColor();
-        }
+        } while (this.#used_colors.includes(color));
+        
         return color;
     }
 
@@ -82,6 +87,7 @@ class Cake {
 
             //add color to the slice
             this.#used_colors.push(this.getColor());
+
             this.#context.fillStyle = this.#used_colors[this.#used_colors.length-1];
             this.#context.fill();
 
@@ -112,5 +118,3 @@ let cake = new Cake(offset_x, offset_y, radius, ctx, 2000);
 cake.addSliceFromData(1000);
 cake.addSliceFromData(50)
 cake.addSliceFromData(100)
-
-cake.getUsedColors().forEach(color => console.log(color));
