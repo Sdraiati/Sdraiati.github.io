@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{{ Title }}</title>
+	<base href="https://sdraiati.github.io" />
+	<link rel="stylesheet" type="text/css" href="assets/style.css">
+</head>
+<body>
+	<header>
+		<div class="Logo">
+			<a href="index.html"><img src="img/logo.png" alt="logo"></a>
+		</div>
+		<div class="Login">
+			<ul>
+				<li><button id="accedi">Accedi</button></li>
+				<li><button id="registrati">Registrati</button></li>
+				<li><button id="utente">Utente</button></li>
+			</ul>
+		</div>
+<!-- <title>{{Project Name}}</title> -->
+
+<h1>{{ Project Name }}</h1>
+<main>
+	<!-- Canvas per il line chart -->
+	<canvas id="line-chart-canvas" class="line-chart-container"></canvas>
+
+	<!-- Tabella delle spese -->
+	<section>
+		<h2>Tabella delle Spese</h2>
+		<!-- Inserisci qui la tabella delle spese -->
+		<table>
+			<!-- Intestazione della tabella -->
+			<thead>
+				<tr>
+					<th>Data</th>
+					<th>Costo (€)</th>
+					<th>Tag</th>
+					<th>Descrizione</th>
+				</tr>
+			</thead>
+			<!-- Corpo della tabella -->
+			<tbody>
+				<tr>
+					<td>01/01/2024</td>
+					<td>20.00</td>
+					<td>Alimentari</td>
+					<td>Spesa generica</td>
+				</tr>
+				<!-- Aggiungi altre righe della tabella, se necessario -->
+			</tbody>
+		</table>
+	</section>
+
+	<!-- Filtri per tag -->
+	<aside class="filtri-tag-container">
+		<a href="project_page.html">Vai alla pagina del progetto</a>
+		<h2>Filtri per Tag</h2>
+		<!-- Inserisci qui i filtri per tag -->
+		<ul>
+			<li>Tag 1</li>
+			<li>Tag 2</li>
+			<!-- Aggiungi altri filtri per tag, se necessario -->
+		</ul>
+	</aside>
+
+	<!-- Partecipanti -->
+	<aside class="partecipanti-container">
+		<h2>Partecipanti</h2>
+		<!-- Inserisci qui l'elenco dei partecipanti -->
+		<ul>
+			<li>Partecipante 1</li>
+			<li>Partecipante 2</li>
+			<!-- Aggiungi altri partecipanti, se necessario -->
+		</ul>
+	</aside>
+</main>
+
+<!-- Riferimento al file JavaScript esterno per la generazione del line chart -->
+<!-- <script src="line_chart_script.js"></script> -->
+<footer>
+	<div class="footer-list">
+		<h3>Prodotto</h3>
+		<ul>
+			<li><a href="my_projects.html">I Miei Progetti</a></li>
+			<li><a href="about_us.html">About Us</a></li>
+		</ul>
+	</div>
+	<div class="footer-list">
+		<h3>Risorse</h3>
+		<ul>
+			<li><a href="index.html">Homepage</a></li>
+			<li><a href="release_notes.html">Release Notes</a></li>
+			<li><a href="https://github.com/Sdraiati" target="_blank">GitHub
+					<img src="github_icon.png" alt="GitHub Icon"></a></li>
+		</ul>
+	</div>
+</footer>
+</body>
+
+</html>
