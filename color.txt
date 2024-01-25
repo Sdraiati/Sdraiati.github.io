@@ -1,0 +1,11 @@
+dark theme------------------------------
+
+#F4DF57 tipo un giallo
+
+#292929 un quasi nero
+
+#A1BDDD un bluetto chiaro
+
+#DDACEB viola ma non proprio viola
+
+light theme------------------------------
