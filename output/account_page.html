@@ -1,0 +1,110 @@
+<!-- <title>Account Page</title> -->
+<!DOCTYPE html>
+<html lang="it">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title> {{ Title }} </title>
+	<base href="https://sdraiati.github.io" />
+	<meta name="description" content="un sito per mostrare cose">
+	<meta name="keywords" content="sito, cose, dati, UN BEL GRAFICONE A TORTA">
+	<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+
+<body>
+	<nav>
+		<div class="Logo">
+			<a href="index.html"><img src="img/logo.png" alt="logo"></a>
+		</div>
+		<div class="Login">
+			<ul>
+				<li><button id="accedi">Accedi</button></li>
+				<li><button id="registrati">Registrati</button></li>
+				<li><button id="utente">Utente</button></li>
+			</ul>
+	</nav>
+
+
+	<header>
+		<h1>Benvenuto/a {{ username }}</h1>
+	</header>
+
+	<main>
+<!-- Informazioni dell'account -->
+<section>
+	<h2>Informazioni dell'Account</h2>
+	<ul>
+		<li>Nome Utente: <span id="username">[Nome Utente]</span></li>
+		<li>Email: <span id="email">[Email]</span></li>
+	</ul>
+	<button id="modificaCredenzialiButton">Modifica Credenziali</button>
+</section>
+
+<!-- Modifica informazioni dell'account -->
+<section id="modificaCredenziali">
+	<h2>Modifica informazioni dell'account</h2>
+	<form>
+		<label for="newEmail">Nuova Email:</label>
+		<input type="email" id="newEmail" name="newEmail" required>
+		<label for="newUsername">Nuovo Nome Utente:</label>
+		<input type="text" id="newUsername" name="newUsername" required>
+		<label for="newPassword">Nuova Password:</label>
+		<input type="password" id="newPassword" name="newPassword" required>
+		<button type="button" id="annullaModificaCredenziali">Annulla</button>
+		<button type="button" id="salvaModificaCredenziali">Salva Modifiche</button>
+	</form>
+</section>
+
+<!-- Elenco dei progetti -->
+<section>
+	<h2>Elenco dei Progetti</h2>
+	<button id="addNewProjectButton">Nuovo Progetto</button>
+	<!-- Inserisci qui l'elenco dei progetti, dinamicamente -->
+	<ul>
+		<li>Progetto 1</li> <!-- ci sarà un link a project_page.html, in cui
+			viene richiesto il progetto in questione -->
+		<li>Progetto 2</li>
+		<!-- Aggiungi altri progetti, se presenti -->
+	</ul>
+</section>
+
+<!-- Crea un Nuovo Progetto -->
+<section id="addNewProject">
+	<h2>Crea un Nuovo Progetto</h2>
+	<form id="addNewProjectForm">
+		<label for="inputNomeProgetto">Nome Progetto:</label>
+		<input type="text" id="inputNomeProgetto" name="nomeProgetto" required>
+		<label for="inputDescrizioneProgetto">Descrizione:</label>
+		<textarea id="inputDescrizioneProgetto" name="descrizioneProgetto" required></textarea>
+		<div class="form-buttons">
+			<button type="button" id="submitNewProjectButton">Crea Progetto</button>
+			<button type="button" id="cancelNewProjectButton">Annulla</button>
+		</div>
+	</form>
+</section>
+
+
+	</main>
+<footer>
+	<div class="footer-list">
+		<h3>Prodotto</h3>
+		<ul>
+			<li><a href="account_page.html">I Miei Progetti</a></li>
+			<li><a href="about_us.html">About Us</a></li>
+		</ul>
+	</div>
+	<div class="footer-list">
+		<h3>Risorse</h3>
+		<ul>
+			<li><a href="index.html">Homepage</a></li>
+			<li><a href="release_notes.html">Release Notes</a></li>
+			<li><a href="https://github.com/Sdraiati" target="_blank">GitHub
+					<img src="github_icon.png" alt="GitHub Icon"></a></li>
+		</ul>
+	</div>
+</footer>
+
+</body>
+
+</html>
