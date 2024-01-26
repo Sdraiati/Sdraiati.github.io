@@ -1,7 +1,11 @@
 <!-- <title>Account Page</title> -->
-<main>
+<header>
 	<h1>Benvenuto/a {{ username }}</h1>
+</header>
 
+<main>
+
+	<!-- Informazioni dell'account -->
 	<section>
 		<h2>Informazioni dell'Account</h2>
 		<ul>
@@ -11,15 +15,7 @@
 		<button id="ModificaCredenziali">Modifica Credenziali</button>
 	</section>
 
-	<section>
-		<h2>Elenco dei Progetti</h2>
-		<ul>
-			<li>Progetto 1</li>
-			<li>Progetto 2</li>
-			<!-- Aggiungi altri progetti, se presenti -->
-		</ul>
-	</section>
-
+	<!-- Modifica informazioni dell'account -->
 	<section>
 		<h2>Modifica informazioni dell'account</h2>
 		<form>
@@ -34,4 +30,31 @@
 		</form>
 	</section>
 
+	<!-- Elenco dei progetti -->
+	<section>
+		<h2>Elenco dei Progetti</h2>
+
+		<!-- Inserisci qui l'elenco dei progetti, dinamicamente -->
+		<ul>
+			<li>Progetto 1</li> <!-- ci sarà un link a project_page.html, in cui
+			viene richiesto il progetto in questione -->
+			<li>Progetto 2</li>
+			<!-- Aggiungi altri progetti, se presenti -->
+		</ul>
+	</section>
+
+	<!-- Crea un Nuovo Progetto -->
+	<section>
+		<h2>Crea un Nuovo Progetto</h2>
+		<form id="newProjectForm">
+			<label for="inputNomeProgetto">Nome Progetto:</label>
+			<input type="text" id="inputNomeProgetto" name="nomeProgetto" required>
+			<label for="inputDescrizioneProgetto">Descrizione:</label>
+			<textarea id="inputDescrizioneProgetto" name="descrizioneProgetto" required></textarea>
+			<div class="form-buttons">
+				<button type="button" id="submitNewProjectButton">Crea Progetto</button>
+				<button type="button" id="cancelNewProjectButton">Annulla</button>
+			</div>
+		</form>
+	</section>
 </main>
