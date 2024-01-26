@@ -1,51 +1,30 @@
 <?php
 
-// Funzione per generare un file HTML
-function generateHTMLFile($contentFile) {
-    // Path dei file
-    $headFile = "layout/head.html";
-    $headerFile = "layout/header.html";
-    $footerFile = "layout/footer.html";
-    
-    // Lettura del contenuto dei file
-    $headContent = file_get_contents($headFile);
-    $headerContent = file_get_contents($headerFile);
-    $footerContent = file_get_contents($footerFile);
-    $content = file_get_contents($contentFile);
-    
-    // Generazione del nome del file HTML
-    $htmlFileName = pathinfo($contentFile, PATHINFO_FILENAME) . ".html";
-    
-    // Apertura del file HTML
-    $htmlFile = fopen($htmlFileName, "w");
-    
-    // Scrittura dell'head nel file HTML
-    fwrite($htmlFile, $headContent);
-    
-    // Scrittura dell'header nel file HTML
-    fwrite($htmlFile, $headerContent);
-    
-    // Scrittura del contenuto nel file HTML
-    fwrite($htmlFile, $content);
-    
-    // Scrittura del footer nel file HTML
-    fwrite($htmlFile, $footerContent);
-    
-    // Chiusura del file HTML
-    fclose($htmlFile);
-    
-    echo "File HTML generato: $htmlFileName\n";
+// Definisci le directory di origine e destinazione
+$contentDir = 'content/';
+$layoutDir = 'layout/';
+$outputDir = 'output/';
+
+// Leggi tutti i file nella cartella "content"
+$contentFiles = scandir($contentDir);
+
+// Loop attraverso i file
+foreach ($contentFiles as $file) {
+    if (pathinfo($file, PATHINFO_EXTENSION) === 'html') {
+        // Leggi il contenuto del file HTML
+        $content = file_get_contents($contentDir . $file);
+        
+        // Cerca e sostituisci le righe di import
+        $content = preg_replace_callback('/^\s*import\s+(.+)$/m', function($matches) use ($layoutDir) {
+            $layoutFile = trim($matches[1]);
+            $layoutContent = file_get_contents($layoutDir . $layoutFile);
+            return $layoutContent;
+        }, $content);
+        
+        // Salva il contenuto generato nella cartella "output"
+        file_put_contents($outputDir . $file, $content);
+    }
 }
 
-// Cartella dei contenuti
-$contentFolder = "content";
-
-// Lettura dei file nella cartella dei contenuti
-$contentFiles = glob($contentFolder . "/*.html");
-
-// Generazione dei file HTML per ogni file nella cartella dei contenuti
-foreach ($contentFiles as $contentFile) {
-    generateHTMLFile($contentFile);
-}
-
+echo "Operazione completata!\n";
 ?>

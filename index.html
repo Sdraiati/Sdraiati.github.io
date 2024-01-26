@@ -1,5 +1,7 @@
+<!-- <title>Home - Penny Wise</title> -->
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,50 +11,88 @@
 	<meta name="keywords" content="sito, cose, dati, UN BEL GRAFICONE A TORTA">
 	<link rel="stylesheet" type="text/css" href="index.css">
 </head>
+
+
 <body>
-	<nav>
-		<div class="Logo">
-			<a href="index.html"><img src="img/logo.png" alt="logo"></a>
-		</div>
-		<div class="Login">
-			<ul>
-				<li><button id="accedi">Accedi</button></li>
-				<li><button id="registrati">Registrati</button></li>
-				<li><button id="utente">Utente</button></li>
-			</ul>
-	</nav>
-<!-- <title>Home - Penny Wise</title> -->
-
-<header>
-	<h1>IL SITO DEL BHO</h1>
-</header>
-
 <nav>
-    <ul>
-        <li><a href="account_page.html"><span lang="en">Home</span></a></li>
-        <li><a href="about_us.html"><span lang="en">About Us</span></a></li>    
-    </ul>
-    <img class="mask"src="5b63414976de92d11afd4f8a068ee0b2.jpg">
+	<div class="Logo">
+		<a href="index.html"><img src="img/logo.png" alt="logo"></a>
+	</div>
+	<div class="Login">
+		<ul>
+			<li><button data-button-kind="accedi">Accedi</button></li>
+			<li><button data-button-kind="registrati">Registrati</button></li>
+			<li><a href="account_page.html" id="utente">Utente</a></li>
+		</ul>
 </nav>
 
-<main>
+<section id="accedi" class="hidden">
+	<h2>Login</h2>
+	<form id="loginForm" action="javascript:void(0)">
+		<label for="inputEmail">Email:</label>
+		<input type="email" id="inputEmail" name="email" required>
+		<label for="inputPassword">Password:</label>
+		<input type="password" id="inputPassword" name="password" required>
+		<button type="button" data-button-kind="accediHide">Annulla</button>
+		<button type="submit" id="submitAccedi">Accedi</button>
+	</form>
+</section>
 
-	<section>
-		<h2>Presentazione</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit urna vel augue laoreet, nec lacinia
-			odio malesuada.</p>
-	</section>
+<section id="registrati" class="hidden">
+	<h2>Registrazione</h2>
+	<form id="registratiForm" action="javascript:void(0)">
+		<label for="inputUsername">Nome Utente:</label>
+		<input type="text" id="inputUsername" name="username" required>
+		<label for="inputEmail">Email:</label>
+		<input type="email" id="inputEmail" name="email" required>
+		<label for="inputPassword">Password:</label>
+		<input type="password" id="inputPassword" name="password" required>
+		<button type="button" data-button-kind="registratiHide">Annulla</button>
+		<button type="submit" id="submitRegistrati">Registrati</button>
+	</form>
+</section>
 
-	<section>
-		<h2>Scopo</h2>
-		<p>Integer vitae dolor nec odio bibendum ultricies ac vel justo. Vestibulum non nunc a quam efficitur
-			congue.</p>
-	</section>
 
-</main>
+	<header>
+		<h1>Penny Wise</h1>
+	</header>
+
+	<main>
+<!-- <title>Home - Penny Wise</title> -->
+<section>
+	<h2>Presentazione</h2>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit urna vel augue laoreet, nec lacinia
+		odio malesuada.</p>
+</section>
+
+<section>
+	<h2>Scopo</h2>
+	<p>Integer vitae dolor nec odio bibendum ultricies ac vel justo. Vestibulum non nunc a quam efficitur
+		congue.</p>
+</section>
+
+
+	</main>
 <footer>
-    <p><a href="about_us.html"><span lang="en">About Us</span></a> | <a href="account_page.html"><span lang="en">Account Page</span></a></p>
+	<div class="footer-list">
+		<h3>Prodotto</h3>
+		<ul>
+			<li><a href="account_page.html">I Miei Progetti</a></li>
+			<li><a href="about_us.html">About Us</a></li>
+		</ul>
+	</div>
+	<div class="footer-list">
+		<h3>Risorse</h3>
+		<ul>
+			<li><a href="index.html">Homepage</a></li>
+			<li><a href="release_notes.html">Release Notes</a></li>
+			<li><a href="https://github.com/Sdraiati" target="_blank">GitHub
+					<img src="github_icon.png" alt="GitHub Icon"></a></li>
+		</ul>
+	</div>
 </footer>
+
+
 </body>
 
 </html>

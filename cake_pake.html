@@ -3,7 +3,6 @@
 <!-- <script src="line_chart_script.js"></script> -->
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,43 +15,17 @@
 
 
 <body>
-<nav>
-	<div class="Logo">
-		<a href="index.html"><img src="img/logo.png" alt="logo"></a>
-	</div>
-	<div class="Login">
-		<ul>
-			<li><button data-button-kind="accedi">Accedi</button></li>
-			<li><button data-button-kind="registrati">Registrati</button></li>
-			<li><a href="account_page.html" id="utente">Utente</a></li>
-		</ul>
-</nav>
-
-<section id="accedi" class="hidden">
-	<h2>Login</h2>
-	<form id="loginForm" action="javascript:void(0)">
-		<label for="inputEmail">Email:</label>
-		<input type="email" id="inputEmail" name="email" required>
-		<label for="inputPassword">Password:</label>
-		<input type="password" id="inputPassword" name="password" required>
-		<button type="button" data-button-kind="accediHide">Annulla</button>
-		<button type="submit" id="submitAccedi">Accedi</button>
-	</form>
-</section>
-
-<section id="registrati" class="hidden">
-	<h2>Registrazione</h2>
-	<form id="registratiForm" action="javascript:void(0)">
-		<label for="inputUsername">Nome Utente:</label>
-		<input type="text" id="inputUsername" name="username" required>
-		<label for="inputEmail">Email:</label>
-		<input type="email" id="inputEmail" name="email" required>
-		<label for="inputPassword">Password:</label>
-		<input type="password" id="inputPassword" name="password" required>
-		<button type="button" data-button-kind="registratiHide">Annulla</button>
-		<button type="submit" id="submitRegistrati">Registrati</button>
-	</form>
-</section>
+	<nav>
+		<div class="Logo">
+			<a href="index.html"><img src="img/logo.png" alt="logo"></a>
+		</div>
+		<div class="Login">
+			<ul>
+				<li><button id="accedi">Accedi</button></li>
+				<li><button id="registrati">Registrati</button></li>
+				<li><button id="utente">Utente</button></li>
+			</ul>
+	</nav>
 
 <!-- <title>{{Project Name}}</title> -->
 <!-- Riferimento al file JavaScript esterno per la generazione del line chart -->
@@ -60,39 +33,36 @@
 
 <header>
 	<h1>{{ Project Name }}</h1>
-	<button type="button" data-button-kind="editProject">Modifica Progetto</button>
+	<button type="button" id="editProjectButton">Modifica Progetto</button>
 </header>
 
 <!-- Modifica Progetto -->
-<section id="editProject" class="hidden">
+<section id="editProject">
 	<h2>Modifica Progetto</h2>
-	<form id="editProjectForm" action="javascript:void(0)">
+	<form id="editProjectForm">
 		<label for="inputNewNomeProgetto">Nuovo Nome Progetto:</label>
 		<input type="text" id="inputNewNomeProgetto" name="newNomeProgetto">
 		<label for="inputNewDescrizioneProgetto">Nuova Descrizione:</label>
 		<textarea id="inputNewDescrizioneProgetto" name="newDescrizioneProgetto"></textarea>
 		<div class="form-buttons">
-			<button type="button" data-button-kind="deleteProject">Elimina Progetto</button>
-			<button type="button" data-button-kind="editProjectHide">Annulla</button>
-			<button type="submit" id="submitEditProject">Salva Modifiche</button>
+			<button type="button" id="submitEditProjectButton">Salva Modifiche</button>
+			<button type="button" id="deleteProjectButton">Elimina Progetto</button>
+			<button type="button" id="cancelEditProjectButton">Annulla</button>
 		</div>
 	</form>
 </section>
 
-<!-- Elimina Progetto -->
-<section id="deleteProject" class="hidden">
+<section id="deleteProject">
 	<h2>Conferma Eliminazione Progetto</h2>
-	<form id="deleteProjectForm" action="javascript:void(0)">
+	<form id="deleteProjectForm">
 		<label for="inputPassword">Inserisci la Password:</label>
 		<input type="password" id="inputPassword" name="password" required>
 		<div class="form-buttons">
-			<button type="button" data-button-kind="deleteProjectHide">Annulla</button>
-			<button type="submit" id="submitDeleteProject">Conferma Eliminazione</button>
+			<button type="button" id="confirmDeleteProjectButton">Conferma Eliminazione</button>
+			<button type="button" id="cancelDeleteProjectButton">Annulla</button>
 		</div>
 	</form>
 </section>
-
-<script src="assets/js/modifica.js"></script>
 
 
 	<!-- Canvas per il line chart -->
@@ -100,7 +70,7 @@
 <!-- Tabella delle transazioni -->
 <section>
 	<h2>Tabella delle Transazioni</h2>
-	<button data-button-kind="newTransaction">Nuova Transazione</button>
+	<button id="addNewTransactionButton">Nuova Transazione</button>
 	<!-- Inserisci qui la tabella delle transazioni -->
 	<table>
 		<!-- Intestazione della tabella -->
@@ -119,14 +89,14 @@
 				<td>20.00</td>
 				<td>Alimentari</td>
 				<td>Spesa generica 1</td>
-				<td><button data-button-kind="editTransaction" data-transazione-index="1">Modifica</button></td>
+				<td><button class="editTransactionButton" data-transazione-index="1">Modifica</button></td>
 			</tr>
 			<tr>
 				<td>05/01/2024</td>
 				<td>15.50</td>
 				<td>Trasporti</td>
 				<td>Spesa generica 2</td>
-				<td><button data-button-kind="editTransaction" data-transazione-index="2">Modifica</button></td>
+				<td><button class="editTransactionButton" data-transazione-index="2">Modifica</button></td>
 			</tr>
 			<!-- Aggiungi altre righe della tabella, se necessario -->
 		</tbody>
@@ -134,9 +104,9 @@
 </section>
 
 <!-- Registra una Nuova Transazione -->
-<section id="newTransaction" class="hidden">
+<section class="addNewTransaction">
 	<h2>Registra una Nuova Transazione</h2>
-	<form id="newTransactionForm" action="javascript:void(0)">
+	<form id="addNewTransactionForm">
 		<label for=" inputData">Data:</label>
 		<input type="date" id="inputData" name="data" required>
 		<label for="inputImporto">Importo:</label>
@@ -152,15 +122,15 @@
 		</datalist>
 		<label for="inputDescrizione">Descrizione:</label>
 		<input type="text" id="inputDescrizione" name="descrizione" required>
-		<button type="button" data-button-kind="newTransactionHide">Annulla</button>
-		<button type="submit" id="submitNewTransaction">Registra Transazione</button>
+		<button type="button" id="submitNewTransactionButton">Registra Transazione</button>
+		<button type="button" id="cancelNewTransactionButton">Annulla</button>
 	</form>
 </section>
 
 <!-- Modifica Transazione -->
-<section id="editTransaction" class="hidden">
+<section id="editTransaction">
 	<h2>Modifica Transazione</h2>
-	<form id="editTransactionForm" action="javascript:void(0)">
+	<form id="editTransactionForm">
 		<label for="inputData">Nuova Data:</label>
 		<input type="date" id="inputData" name="data">
 		<label for="inputCosto">Nuovo Importo (€):</label>
@@ -170,21 +140,19 @@
 		<!-- Datalist per i tag -->
 		<datalist id="tags">
 			<!-- Inserisci qui i tag, dinamicamente -->
-			<option value="Alimentari">
-			<option value="Abbigliamento">
-			<option value="Trasporti">
+			<!-- <option value="Alimentari">
+				<option value="Abbigliamento">
+				<option value="Trasporti"> -->
 		</datalist>
 		<label for="inputDescrizione">Nuova Descrizione:</label>
 		<input type="text" id="inputDescrizione" name="descrizione">
 		<div class="form-buttons">
+			<button type="button">Salva Modifiche</button>
 			<button type="button" id="deleteTransazioneButton">Elimina Transazione</button>
-			<button type="button" data-button-kind="editTransactionHide">Annulla</button>
-			<button type="submit" id="submitEditTransaction">Salva Modifiche</button>
+			<button type="button" id="cancelEditTransazioneButton">Annulla</button>
 		</div>
 	</form>
 </section>
-
-<script src="assets/js/modifica.js"></script>
 
 <!-- Filtri per tag -->
 <aside class="filtri-tag-container">

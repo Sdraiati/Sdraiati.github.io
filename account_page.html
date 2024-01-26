@@ -1,5 +1,7 @@
+<!-- <title>Account Page</title> -->
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,79 +11,112 @@
 	<meta name="keywords" content="sito, cose, dati, UN BEL GRAFICONE A TORTA">
 	<link rel="stylesheet" type="text/css" href="index.css">
 </head>
+
+
 <body>
-	<nav>
-		<div class="Logo">
-			<a href="index.html"><img src="img/logo.png" alt="logo"></a>
-		</div>
-		<div class="Login">
-			<ul>
-				<li><button id="accedi">Accedi</button></li>
-				<li><button id="registrati">Registrati</button></li>
-				<li><button id="utente">Utente</button></li>
-			</ul>
-	</nav>
-<!-- <title>Account Page</title> -->
-<header>
-	<h1>Benvenuto/a {{ username }}</h1>
-</header>
-
-<main>
-
-	<!-- Informazioni dell'account -->
-	<section>
-		<h2>Informazioni dell'Account</h2>
+<nav>
+	<div class="Logo">
+		<a href="index.html"><img src="img/logo.png" alt="logo"></a>
+	</div>
+	<div class="Login">
 		<ul>
-			<li>Nome Utente: <span id="username">[Nome Utente]</span></li>
-			<li>Email: <span id="email">[Email]</span></li>
+			<li><button data-button-kind="accedi">Accedi</button></li>
+			<li><button data-button-kind="registrati">Registrati</button></li>
+			<li><a href="account_page.html" id="utente">Utente</a></li>
 		</ul>
-		<button id="ModificaCredenziali">Modifica Credenziali</button>
-	</section>
+</nav>
 
-	<!-- Modifica informazioni dell'account -->
-	<section>
-		<h2>Modifica informazioni dell'account</h2>
-		<form>
-			<label for="newEmail">Nuova Email:</label>
-			<input type="email" id="newEmail" name="newEmail" required>
-			<label for="newUsername">Nuovo Nome Utente:</label>
-			<input type="text" id="newUsername" name="newUsername" required>
-			<label for="newPassword">Nuova Password:</label>
-			<input type="password" id="newPassword" name="newPassword" required>
-			<button type="button" id="annullaModificaCredenziali">Annulla</button>
-			<button type="button" id="salvaModificaCredenziali">Salva Modifiche</button>
-		</form>
-	</section>
+<section id="accedi" class="hidden">
+	<h2>Login</h2>
+	<form id="loginForm" action="javascript:void(0)">
+		<label for="inputEmail">Email:</label>
+		<input type="email" id="inputEmail" name="email" required>
+		<label for="inputPassword">Password:</label>
+		<input type="password" id="inputPassword" name="password" required>
+		<button type="button" data-button-kind="accediHide">Annulla</button>
+		<button type="submit" id="submitAccedi">Accedi</button>
+	</form>
+</section>
 
-	<!-- Elenco dei progetti -->
-	<section>
-		<h2>Elenco dei Progetti</h2>
+<section id="registrati" class="hidden">
+	<h2>Registrazione</h2>
+	<form id="registratiForm" action="javascript:void(0)">
+		<label for="inputUsername">Nome Utente:</label>
+		<input type="text" id="inputUsername" name="username" required>
+		<label for="inputEmail">Email:</label>
+		<input type="email" id="inputEmail" name="email" required>
+		<label for="inputPassword">Password:</label>
+		<input type="password" id="inputPassword" name="password" required>
+		<button type="button" data-button-kind="registratiHide">Annulla</button>
+		<button type="submit" id="submitRegistrati">Registrati</button>
+	</form>
+</section>
 
-		<!-- Inserisci qui l'elenco dei progetti, dinamicamente -->
-		<ul>
-			<li>Progetto 1</li> <!-- ci sarà un link a project_page.html, in cui
+
+	<header>
+		<h1>Benvenuto/a {{ username }}</h1>
+	</header>
+
+	<main>
+<!-- Informazioni dell'account -->
+<section>
+	<h2>Informazioni dell'Account</h2>
+	<ul>
+		<li>Nome Utente: <span id="username">[Nome Utente]</span></li>
+		<li>Email: <span id="email">[Email]</span></li>
+	</ul>
+	<button data-button-kind="modificaCredenziali">Modifica Credenziali</button>
+</section>
+
+<!-- Modifica informazioni dell'account -->
+<section id="modificaCredenziali" class="hidden">
+	<h2>Modifica informazioni dell'account</h2>
+	<form id="modificaCredenzialiForm" action="javascript:void(0)">
+		<label for="newEmail">Nuova Email:</label>
+		<input type="email" id="newEmail" name="newEmail" required>
+		<label for="newUsername">Nuovo Nome Utente:</label>
+		<input type="text" id="newUsername" name="newUsername" required>
+		<label for="newPassword">Nuova Password:</label>
+		<input type="password" id="newPassword" name="newPassword" required>
+		<button type="button" data-button-kind="modificaCredenzialiHide">Annulla</button>
+		<button type="submit" id="submitModificaCredenziali">Salva Modifiche</button>
+	</form>
+</section>
+
+<script src=" assets/js/modifica.js"></script>
+
+<!-- Elenco dei progetti -->
+<section>
+	<h2>Elenco dei Progetti</h2>
+	<button data-button-kind="newProject">Nuovo Progetto</button>
+	<!-- Inserisci qui l'elenco dei progetti, dinamicamente -->
+	<ul>
+		<li>Progetto 1</li> <!-- ci sarà un link a project_page.html, in cui
 			viene richiesto il progetto in questione -->
-			<li>Progetto 2</li>
-			<!-- Aggiungi altri progetti, se presenti -->
-		</ul>
-	</section>
+		<li>Progetto 2</li>
+		<!-- Aggiungi altri progetti, se presenti -->
+	</ul>
+</section>
 
-	<!-- Crea un Nuovo Progetto -->
-	<section>
-		<h2>Crea un Nuovo Progetto</h2>
-		<form id="newProjectForm">
-			<label for="inputNomeProgetto">Nome Progetto:</label>
-			<input type="text" id="inputNomeProgetto" name="nomeProgetto" required>
-			<label for="inputDescrizioneProgetto">Descrizione:</label>
-			<textarea id="inputDescrizioneProgetto" name="descrizioneProgetto" required></textarea>
-			<div class="form-buttons">
-				<button type="button" id="submitNewProjectButton">Crea Progetto</button>
-				<button type="button" id="cancelNewProjectButton">Annulla</button>
-			</div>
-		</form>
-	</section>
+<!-- Crea un Nuovo Progetto -->
+<section id="newProject" class="hidden">
+	<h2>Crea un Nuovo Progetto</h2>
+	<form id="newProjectForm" action="javascript:void(0)>
+		<label for=" inputNomeProgetto">Nome Progetto:</label>
+		<input type="text" id="inputNomeProgetto" name="nomeProgetto" required>
+		<label for="inputDescrizioneProgetto">Descrizione:</label>
+		<textarea id="inputDescrizioneProgetto" name="descrizioneProgetto" required></textarea>
+		<div class="form-buttons">
+			<button type="button" data-button-kind="newProjectHide">Annulla</button>
+			<button type="submit" id="submitNewProject">Crea Progetto</button>
+		</div>
+	</form>
+</section>
 
-</main>
+<script src="assets/js/modifica.js"></script>
+
+
+	</main>
 <footer>
 	<div class="footer-list">
 		<h3>Prodotto</h3>
@@ -100,6 +135,7 @@
 		</ul>
 	</div>
 </footer>
+
 </body>
 
 </html>
