@@ -1,7 +1,7 @@
 <!-- elenco dei tag -->
 <section>
 	<h2>Elenco dei Tag</h2>
-	<button id="addNewTagButton">Nuovo Tag</button>
+	<button data-button-kind="newTag">Nuovo Tag</button>
 
 	<table>
 		<thead>
@@ -16,13 +16,13 @@
 				<td>Tag 1</td>
 				<!-- <td>Colore 1</td> -->
 				<td>Descrizione 1</td>
-				<td><button class="editTagButton" data-tag-index="1">Modifica</button></td>
+				<td><button data-button-kind="editTag" data-tag-index="1">Modifica</button></td>
 			</tr>
 		</tbody>
 	</table>
 </section>
 
-<section id="addNewTag">
+<section id="newTag" class="nascondi" action="javascript:void(0)">
 	<h2>Nuovo Tag</h2>
 	<form>
 		<label for="tagName">Nome</label>
@@ -31,12 +31,12 @@
 		<input type="color" id="tagColor" name="tagColor" required> -->
 		<label for="tagDescription">Descrizione</label>
 		<textarea id="tagDescription" name="tagDescription" placeholder="Descrizione del Tag" required></textarea>
-		<button type="button" id="cancelAddNewTag">Annulla</button>
-		<button type="button" id="submitAddNewTag">Salva</button>
+		<button type="button" data-button-kind="newTagHide">Annulla</button>
+		<button type="submit" id="submitNewTag">Salva</button>
 	</form>
 </section>
 
-<section id="editTag">
+<section id="editTag" class="nascondi" action="javascript:void(0)">
 	<h2>Modifica Tag</h2>
 	<form>
 		<label for="tagName">Nuovo Nome</label>
@@ -45,7 +45,9 @@
 		<input type="color" id="tagColor" name="tagColor" required> -->
 		<label for="tagDescription">Nuova Descrizione</label>
 		<textarea id="tagDescription" name="tagDescription" placeholder="Descrizione del Tag" required></textarea>
-		<button type="button" id="cancelEditTag">Annulla</button>
-		<button type="button" id="submitEditTag">Salva</button>
+		<button type="button" data-button-kind="editTagHide">Annulla</button>
+		<button type="submit" id="submitEditTag">Salva</button>
 	</form>
 </section>
+
+<script src="assets/js/modifica.js"></script>

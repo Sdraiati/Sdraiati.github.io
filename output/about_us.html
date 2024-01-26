@@ -1,11 +1,12 @@
 <!-- <title>About Us - Penny Wise</title> -->
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title> {{ Title }} </title>
-	<base href="https://sdraiati.github.io" />
+	<base href="/users/carlorosso/Documents/triennale_informatica/terzo_anno/tecnologie_web/Sdraiati.github.io/" />
 	<meta name="description" content="un sito per mostrare cose">
 	<meta name="keywords" content="sito, cose, dati, UN BEL GRAFICONE A TORTA">
 	<link rel="stylesheet" type="text/css" href="index.css">
@@ -13,17 +14,45 @@
 
 
 <body>
-	<nav>
-		<div class="Logo">
-			<a href="index.html"><img src="img/logo.png" alt="logo"></a>
-		</div>
-		<div class="Login">
-			<ul>
-				<li><button id="accedi">Accedi</button></li>
-				<li><button id="registrati">Registrati</button></li>
-				<li><button id="utente">Utente</button></li>
-			</ul>
-	</nav>
+<nav>
+	<div class="Logo">
+		<a href="index.html"><img src="img/logo.png" alt="logo"></a>
+	</div>
+	<div class="Login">
+		<ul>
+			<li><button data-button-kind="accedi">Accedi</button></li>
+			<li><button data-button-kind="registrati">Registrati</button></li>
+			<li><a href="account_page.html" id="utente">Utente</a></li>
+		</ul>
+</nav>
+
+<!-- Autenticazione -->
+<section id="accedi" class="nascondi">
+	<h2>Accedi</h2>
+	<form>
+		<label for="email">email:</label>
+		<input type="email" id="email" name="email" required>
+		<label for="password">password:</label>
+		<input type="password" id="password" name="password" required>
+		<button type="button" data-button-kind="accediHide">Annulla</button>
+		<button type="button" id="submitLogin">Accedi</button>
+	</form>
+</section>
+
+<!-- Registrazione -->
+<section id="registrati" class="nascondi">
+	<h2>Registrati</h2>
+	<form>
+		<label for="email">email:</label>
+		<input type="email" id="email" name="email" required>
+		<label for="username">username:</label>
+		<input type="text" id="username" name="username" required>
+		<label for="password">password:</label>
+		<input type="password" id="password" name="password" required>
+		<button type="button" data-button-kind="registratiHide">Annulla</button>
+		<button type="button" id="submitRegistration">Registrati</button>
+	</form>
+</section>
 
 
 	<header>

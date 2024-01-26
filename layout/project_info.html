@@ -4,33 +4,36 @@
 
 <header>
 	<h1>{{ Project Name }}</h1>
-	<button type="button" id="editProjectButton">Modifica Progetto</button>
+	<button type="button" data-button-kind="editProject">Modifica Progetto</button>
 </header>
 
 <!-- Modifica Progetto -->
-<section id="editProject">
+<section id="editProject" class="nascondi">
 	<h2>Modifica Progetto</h2>
-	<form id="editProjectForm">
+	<form id="editProjectForm" action="javascript:void(0)">
 		<label for="inputNewNomeProgetto">Nuovo Nome Progetto:</label>
 		<input type="text" id="inputNewNomeProgetto" name="newNomeProgetto">
 		<label for="inputNewDescrizioneProgetto">Nuova Descrizione:</label>
 		<textarea id="inputNewDescrizioneProgetto" name="newDescrizioneProgetto"></textarea>
 		<div class="form-buttons">
-			<button type="button" id="submitEditProjectButton">Salva Modifiche</button>
-			<button type="button" id="deleteProjectButton">Elimina Progetto</button>
-			<button type="button" id="cancelEditProjectButton">Annulla</button>
+			<button type="button" data-button-kind="deleteProject">Elimina Progetto</button>
+			<button type="button" data-button-kind="editProjectHide">Annulla</button>
+			<button type="submit" id="submitEditProject">Salva Modifiche</button>
 		</div>
 	</form>
 </section>
 
-<section id="deleteProject">
+<!-- Elimina Progetto -->
+<section id="deleteProject" class="nascondi">
 	<h2>Conferma Eliminazione Progetto</h2>
-	<form id="deleteProjectForm">
+	<form id="deleteProjectForm" action="javascript:void(0)">
 		<label for="inputPassword">Inserisci la Password:</label>
 		<input type="password" id="inputPassword" name="password" required>
 		<div class="form-buttons">
-			<button type="button" id="confirmDeleteProjectButton">Conferma Eliminazione</button>
-			<button type="button" id="cancelDeleteProjectButton">Annulla</button>
+			<button type="button" data-button-kind="deleteProjectHide">Annulla</button>
+			<button type="submit" id="submitDeleteProject">Conferma Eliminazione</button>
 		</div>
 	</form>
 </section>
+
+<script src="assets/js/modifica.js"></script>
