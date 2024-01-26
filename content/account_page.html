@@ -12,11 +12,11 @@
 			<li>Nome Utente: <span id="username">[Nome Utente]</span></li>
 			<li>Email: <span id="email">[Email]</span></li>
 		</ul>
-		<button id="ModificaCredenziali">Modifica Credenziali</button>
+		<button id="modificaCredenzialiButton">Modifica Credenziali</button>
 	</section>
 
 	<!-- Modifica informazioni dell'account -->
-	<section>
+	<section id="modificaCredenziali">
 		<h2>Modifica informazioni dell'account</h2>
 		<form>
 			<label for="newEmail">Nuova Email:</label>
@@ -33,7 +33,7 @@
 	<!-- Elenco dei progetti -->
 	<section>
 		<h2>Elenco dei Progetti</h2>
-
+		<button id="addNewProjectButton">Nuovo Progetto</button>
 		<!-- Inserisci qui l'elenco dei progetti, dinamicamente -->
 		<ul>
 			<li>Progetto 1</li> <!-- ci sarà un link a project_page.html, in cui
@@ -44,9 +44,9 @@
 	</section>
 
 	<!-- Crea un Nuovo Progetto -->
-	<section>
+	<section id="addNewProject">
 		<h2>Crea un Nuovo Progetto</h2>
-		<form id="newProjectForm">
+		<form id="addNewProjectForm">
 			<label for="inputNomeProgetto">Nome Progetto:</label>
 			<input type="text" id="inputNomeProgetto" name="nomeProgetto" required>
 			<label for="inputDescrizioneProgetto">Descrizione:</label>
