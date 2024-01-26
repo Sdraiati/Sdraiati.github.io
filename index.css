@@ -110,7 +110,7 @@ button{
     cursor: pointer;
 }
 
-.visibility{
+.hidden{
     display: none;
 }
 
@@ -187,6 +187,7 @@ ul{
        display: block;
        margin: auto; 
     }
+
 ul li {
     margin-top: 10px;
 }

@@ -1,4 +1,3 @@
-<!-- <title>Release Notes - Versione 0.1</title> -->
 <!DOCTYPE html>
 <html lang="it">
 
@@ -54,27 +53,63 @@
 
 
 	<header>
-		<h1><span lang="en">Release Notes</span> - Versione 0.1</h1>
+		<h1>{{ Project Name }} - Tag</h1>
 	</header>
 
 	<main>
+<!-- elenco dei tag -->
 <section>
-	<h2>Aggiornamenti della Versione 0.1</h2>
-	<p>In questa versione, abbiamo completato la struttura
-		progettata per il nostro sito web. I seguenti HTML sono stati
-		creati:</p>
-	<ul>
-		<li><span lang="en">Homepage</span></li>
-		<ul>
-			<li><span lang="en">About Us</span></li>
-			<li><span lang="en">Release Notes</span></li>
-			<li><span lang="en">Account Page</span></li>
-			<li><span lang="en">Project Page</span></li>
-			<li><span lang="en">Cake Page</span></li>
-		</ul>
-	</ul>
+	<h2>Elenco dei Tag</h2>
+	<button data-button-kind="newTag">Nuovo Tag</button>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<!-- <th>Colore</th> -->
+				<th>Descrizione</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Tag 1</td>
+				<!-- <td>Colore 1</td> -->
+				<td>Descrizione 1</td>
+				<td><button data-button-kind="editTag" data-tag-index="1">Modifica</button></td>
+			</tr>
+		</tbody>
+	</table>
 </section>
 
+<section id="newTag" class="hidden" action="javascript:void(0)">
+	<h2>Nuovo Tag</h2>
+	<form>
+		<label for="tagName">Nome</label>
+		<input type="text" id="tagName" name="tagName" placeholder="Nome del Tag" required>
+		<!-- <label for="tagColor">Colore</label>
+		<input type="color" id="tagColor" name="tagColor" required> -->
+		<label for="tagDescription">Descrizione</label>
+		<textarea id="tagDescription" name="tagDescription" placeholder="Descrizione del Tag" required></textarea>
+		<button type="button" data-button-kind="newTagHide">Annulla</button>
+		<button type="submit" id="submitNewTag">Salva</button>
+	</form>
+</section>
+
+<section id="editTag" class="hidden" action="javascript:void(0)">
+	<h2>Modifica Tag</h2>
+	<form>
+		<label for="tagName">Nuovo Nome</label>
+		<input type="text" id="tagName" name="tagName" placeholder="Nome del Tag" required>
+		<!-- <label for="tagColor">Colore</label>
+		<input type="color" id="tagColor" name="tagColor" required> -->
+		<label for="tagDescription">Nuova Descrizione</label>
+		<textarea id="tagDescription" name="tagDescription" placeholder="Descrizione del Tag" required></textarea>
+		<button type="button" data-button-kind="editTagHide">Annulla</button>
+		<button type="submit" id="submitEditTag">Salva</button>
+	</form>
+</section>
+
+<script src="assets/js/modifica.js"></script>
 
 	</main>
 <footer>
