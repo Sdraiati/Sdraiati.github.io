@@ -1,12 +1,14 @@
 :root
 {
     --backgroundColor:  #292929;
+    --textButtonColor:  #292929;
     --titlesColor: #F4DF57;
+    --buttonsColor: #F4DF57;
     --linkHoverColor: #A1BDDD;
     --linkColor: #ffffff;
     --textColor: #ffffff;
+    --footerHeight: 150px;
 }
-
 body {
     background-color: var(--backgroundColor);
     color: var(--textColor);
@@ -14,6 +16,13 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    min-height: 100vh;
+    position: relative;
+}
+
+main{
+    padding: 20px;
+    padding-bottom: var(--footerHeight); 
 }
 
 header {
@@ -47,10 +56,12 @@ h1, h2 {
     color: var(--titlesColor);
 }
 
-nav, ul 
+ul
 {
     display: flex;
+    list-style-type: none;
 }
+
 nav{
     padding: 0;
     margin: 0; 
@@ -60,16 +71,34 @@ nav ul li{
     margin-right: 10px; 
 }
 
-
 footer {
     text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
     width: 100%;
+    position:absolute;
+    bottom: 0;
 }
 
+footer ul
+{
+    text-align: center;
+    justify-content: center;
+}
 
+footer ul li
+{
+    margin-right: 32px; 
+}
+
+button{
+    background-color:var(--buttonsColor);
+    border: none;
+    color: var(--textButtonColor);
+    padding: 10px 27px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 10px;
+    cursor: pointer;
+}
 
 .mask
 {
@@ -80,9 +109,16 @@ footer {
     cursor: pointer;
 }
 
+.detailes_view{
+    display: none;
+}
+
 @media (max-width: 600px) {
 ul{
        display: block;
        margin: auto; 
     }
+ul li {
+    margin-top: 10px;
+}
 }

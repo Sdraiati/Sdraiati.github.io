@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="un sito per mostrare cose">
-    <meta name="keywords" content="sito, cose, dati, UN BEL GRAFICONE A TORTA">
-    <link rel="stylesheet" href="index.css">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title> {{ Title }} </title>
+	<!--<base href="https://sdraiati.github.io" />-->
+	<meta name="description" content="un sito per mostrare cose">
+	<meta name="keywords" content="sito, cose, dati, UN BEL GRAFICONE A TORTA">
+	<link rel="stylesheet" type="text/css" href="index.css">
     <title>Bho qualcosa</title>
 </head>
 <body>
@@ -15,11 +17,15 @@
 </header>
 
 <nav>
-    <ul>
-        <li><a href="account_page.html"><span lang="en">Home</span></a></li>
-        <li><a href="about_us.html"><span lang="en">About Us</span></a></li>    
-    </ul>
-    <img class="mask"src="5b63414976de92d11afd4f8a068ee0b2.jpg">
+    <div class="Logo">
+        <a href="index.html"><img src="img/logo.png" alt="logo"></a>
+    </div>
+    <div class="Login">
+        <ul>
+            <li><button id="accedi">Accedi</button></li>
+            <li><button id="registrati">Registrati</button></li>
+            <li><button id="utente">Utente</button></li>
+        </ul>
 </nav>
 
 <main>
@@ -37,7 +43,22 @@
 </main>
 
 <footer>
-    <p><a href="about_us.html"><span lang="en">About Us</span></a> | <a href="account_page.html"><span lang="en">Account Page</span></a></p>
+	<div class="footer-list">
+		<h3>Prodotto</h3>
+		<ul>
+			<li><a href="my_projects.html">I Miei Progetti</a></li>
+			<li><a href="about_us.html">About Us</a></li>
+		</ul>
+	</div>
+	<div class="footer-list">
+		<h3>Risorse</h3>
+		<ul>
+			<li><a href="index.html">Homepage</a></li>
+			<li><a href="release_notes.html">Release Notes</a></li>
+			<li><a href="https://github.com/Sdraiati" target="_blank">GitHub
+					<img src="github_icon.png" alt="GitHub Icon"></a></li>
+		</ul>
+	</div>
 </footer>
 
 </body>
