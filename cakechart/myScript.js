@@ -1,6 +1,6 @@
 const degreesToRads = deg => (deg * Math.PI) / 180.0;
 
-//inverte il segno per adattarsi all'asse y inverso del canvas
+//invert the sign to adapt to the inverse y axis of the canvas
 const invertYaxis = angle =>360 -angle;
 
 function generateRandomColor() {
@@ -58,14 +58,18 @@ class Cake {
     #x;
     #y;
     #radius;
+    #offset_angle;  //offset angle of the cake
+    #last_angle;   //last angle used
     #used_angle;   //remaining angle of the cake
     #context;      //context of the canvas
     #total_data;   //total data (corresponding to 100%)
     #used_colors;  //colors of the slices
     #legend;
     
-    constructor(x, y, radius, ctx, total=100, used_angle=0) {
-        this.#used_angle = used_angle;
+    constructor(x, y, radius, ctx, offset_angle=0, total=100) {
+        this.#used_angle = 0;
+        this.#offset_angle = offset_angle;
+        this.#last_angle = offset_angle;
         this.#x = x;
         this.#y = y;
         this.#radius = radius;
@@ -116,14 +120,17 @@ class Cake {
     addSlice(angle) {
         this.#context.closePath();
         this.#context.stroke();
-
+        
+        this.#last_angle = this.#offset_angle + this.#used_angle;
+        console.log("angle: " + angle);
+        console.log("total - used: " + (Cake.total_angle-this.#used_angle));
         if (angle > Cake.total_angle-this.#used_angle){console.log("Overflow usable angle"); return -1;}
         else{
             this.#context.beginPath();
 
-            let end_angle = this.createSliceLine(this.#used_angle);           //start slice line
+            let end_angle = this.createSliceLine(this.#last_angle);               //start slice line
 
-            let start_angle = this.createSliceLine(this.#used_angle + angle);     //end slice line
+            let start_angle = this.createSliceLine(this.#last_angle + angle);     //end slice line
 
             this.#context.arc(this.#x, this.#y, this.#radius, start_angle, end_angle);                               //draw the arc
 
@@ -159,12 +166,13 @@ let offset_x = 500;
 let offset_y = 250;
 let radius = 200;
 
-let cake = new Cake(offset_x, offset_y, radius, ctx, 100);
+let cake = new Cake(offset_x, offset_y, radius, ctx, 90);
 
-cake.addSliceFromData(50);
-cake.addSliceFromData(5);
-cake.addSliceFromData(10);
-cake.addSliceFromData(35);
+cake.addSlice(180);
+cake.addSlice(135);
+//cake.addSliceFromData(5);
+//cake.addSliceFromData(10);
+//cake.addSliceFromData(35);
 
 items = ["item1", "item2", "item3", "item4"];
 cake.createLegend(items);
