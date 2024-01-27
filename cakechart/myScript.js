@@ -1,4 +1,6 @@
 PALETTE = ["#D25AF3", "#3DA179", "#BB891C", "#8264C7", "#3D9AA0", "#808059", "#E9476A", "#CE4129", "#8D69D0", "#AE7D22", "#5293C4", "#CF298A", "#BF5A5A", "#779F19", "#548461", "#989021"]
+//legend limit for dynamic height
+const LEGEND_LIMIT = 6;
 
 const degreesToRads = deg => (deg * Math.PI) / 180.0;
 
@@ -21,7 +23,7 @@ class Legend {
     #colors;
     #items;
 
-    constructor(ctx, colors, items, x=800, y=50, width=150, height=200){
+    constructor(ctx, colors, items, elongated=false, x=800, y=50, width=150, height=200){
         this.#x = x;
         this.#y = y;
         this.#context = ctx;
@@ -30,7 +32,8 @@ class Legend {
 
         //draw the rectangle border
         this.#context.beginPath();
-        this.#context.rect(this.#x, this.#y, width, height);
+        if(elongated) this.#context.rect(this.#x, this.#y, width, height*2);
+        else this.#context.rect(this.#x, this.#y, width, height);
         this.#context.closePath();
         this.#context.stroke();
 
@@ -80,6 +83,7 @@ class Cake {
         this.#total_data = total;
         this.#used_colors = ["#ffffff"];
         this.#palette_index = 0;
+        this.#legend = null;
 
         this.#context.beginPath();
         this.#context.arc(this.#x, this.#y, this.#radius, 0, 2 * Math.PI);
@@ -165,7 +169,8 @@ class Cake {
     }
 
     createLegend(items){
-        this.#legend = new Legend(this.#context, this.#used_colors, items);
+        if (items.length > LEGEND_LIMIT) this.#legend = new Legend(this.#context, this.#used_colors, items, true);
+        else this.#legend = new Legend(this.#context, this.#used_colors, items);
     }
 }
 
@@ -190,5 +195,5 @@ cake.addSlice(45);
 //cake.addSliceFromData(10);
 //cake.addSliceFromData(35);
 
-items = ["item1", "item2", "item3", "item4"];
+items = ["item1", "item2", "item3", "item4", "item5", "item6", "item7", "item8"];
 cake.createLegend(items);
