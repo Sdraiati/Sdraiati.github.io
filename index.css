@@ -53,10 +53,15 @@ h1, h2 {
     color: var(--titlesColor);
 }
 
+ul{
+    list-style-type: none;
+}
+
 nav {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 10px;
+    margin: 0; 
 }
 
 nav div
@@ -72,6 +77,15 @@ nav div li:nth-child(3)
     height: 35px;
     border-radius: 50%;
     cursor: pointer;
+}
+
+nav ul
+{
+    display: flex;
+}
+
+nav ul li{
+    margin-right: 10px; 
 }
 
 nav div li:nth-child(3):hover
@@ -96,39 +110,31 @@ section {
     padding: 20px;
 }
 
-
-
-ul
-{
-    display: flex;
-    list-style-type: none;
-}
-
-nav{
-    padding: 0;
-    margin: 0; 
-    justify-content:space-between;
-}
-nav ul li{
-    margin-right: 10px; 
-}
-
 footer {
-    text-align: center;
+    text-align: left;
     width: 100%;
     position:absolute;
     bottom: 0;
+    padding-bottom: 20px;
+}
+
+footer .footer-list
+{
+    width: 25%;
+    margin-left: 25%;
+    float: left;
 }
 
 footer ul
 {
-    text-align: center;
-    justify-content: center;
+    margin: 0;
+    padding: 0;
+    text-align: left;
 }
 
 footer ul li
 {
-    margin-right: 32px; 
+    margin-top: 10px;
 }
 
 button{
@@ -210,41 +216,67 @@ button:hover
 
 @media (max-width: 1280px) {
     .allert
-{
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: fixed;
-    z-index: 2;
-    width: 50%;
-    background-color: var(--popUpColor);
-    padding: 5%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 10px;
-}
+    {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: fixed;
+        z-index: 2;
+        width: 50%;
+        background-color: var(--popUpColor);
+        padding: 5%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 10px;
+    }
 }
 
 @media (max-width: 600px) {
-footer ul{
-       display: block;
-       margin: auto; 
-    }
-footer li
-{
-    margin-top: 10px;
-}
-nav ul
-{
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-    justify-items: center;
-}
 
-nav ul li {
-    grid-column: 1fr;
-}
+    footer {
+        text-align: left;
+        width: 100%;
+        position:absolute;
+        bottom: 0;
+        padding-bottom: 20px;
+    }
+    
+    footer .footer-list
+    {
+        float: left;
+        width: 100%;
+        margin-left: 0;
+        padding-left: 40px;
+        padding-bottom: 10px;
+    }
+    
+    footer ul
+    {
+        margin: 0;
+        padding: 0;
+        text-align: left;
+    }
+    
+    footer ul li
+    {
+        margin-top: 10px;
+    }
+
+    nav ul
+    {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        justify-items: center;
+    }
+
+    nav ul li {
+        grid-column: 1;
+    }
+    main{
+        padding-bottom: 300px; 
+    }
+
 }
