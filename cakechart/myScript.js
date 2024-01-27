@@ -1,3 +1,7 @@
+PALETTE = ["#D25AF3", "#3DA179", "#BB891C", "#8264C7", "#3D9AA0", "#808059", "#E9476A", "#CE4129", "#8D69D0", "#AE7D22", "#5293C4", "#CF298A", "#BF5A5A", "#779F19", "#548461", "#989021"]
+//legend limit for dynamic height
+const LEGEND_LIMIT = 6;
+
 const degreesToRads = deg => (deg * Math.PI) / 180.0;
 
 //invert the sign to adapt to the inverse y axis of the canvas
@@ -19,7 +23,7 @@ class Legend {
     #colors;
     #items;
 
-    constructor(ctx, colors, items, x=800, y=50, width=150, height=200){
+    constructor(ctx, colors, items, elongated=false, x=800, y=50, width=150, height=200){
         this.#x = x;
         this.#y = y;
         this.#context = ctx;
@@ -28,7 +32,8 @@ class Legend {
 
         //draw the rectangle border
         this.#context.beginPath();
-        this.#context.rect(this.#x, this.#y, width, height);
+        if(elongated) this.#context.rect(this.#x, this.#y, width, height*2);
+        else this.#context.rect(this.#x, this.#y, width, height);
         this.#context.closePath();
         this.#context.stroke();
 
@@ -64,6 +69,7 @@ class Cake {
     #context;      //context of the canvas
     #total_data;   //total data (corresponding to 100%)
     #used_colors;  //colors of the slices
+    #palette_index;
     #legend;
     
     constructor(x, y, radius, ctx, offset_angle=0, total=100) {
@@ -76,6 +82,8 @@ class Cake {
         this.#context = ctx;
         this.#total_data = total;
         this.#used_colors = ["#ffffff"];
+        this.#palette_index = 0;
+        this.#legend = null;
 
         this.#context.beginPath();
         this.#context.arc(this.#x, this.#y, this.#radius, 0, 2 * Math.PI);
@@ -97,6 +105,14 @@ class Cake {
             color = generateRandomColor();
         } while (this.#used_colors.includes(color));
         
+        return color;
+    }
+
+    //get one color from palette
+    getPaletteColor(){ 
+        let color = PALETTE[this.#palette_index];
+        if (this.#palette_index == PALETTE.length-1) return console.log("Palette overflow");
+        ++this.#palette_index;
         return color;
     }
 
@@ -122,8 +138,6 @@ class Cake {
         this.#context.stroke();
         
         this.#last_angle = this.#offset_angle + this.#used_angle;
-        console.log("angle: " + angle);
-        console.log("total - used: " + (Cake.total_angle-this.#used_angle));
         if (angle > Cake.total_angle-this.#used_angle){console.log("Overflow usable angle"); return -1;}
         else{
             this.#context.beginPath();
@@ -135,7 +149,7 @@ class Cake {
             this.#context.arc(this.#x, this.#y, this.#radius, start_angle, end_angle);                               //draw the arc
 
             //add color to the slice
-            this.#used_colors.push(this.getColor());
+            this.#used_colors.push(this.getPaletteColor());
 
             this.#context.fillStyle = this.#used_colors[this.#used_colors.length-1];
             this.#context.fill();
@@ -155,7 +169,8 @@ class Cake {
     }
 
     createLegend(items){
-        this.#legend = new Legend(this.#context, this.#used_colors, items);
+        if (items.length > LEGEND_LIMIT) this.#legend = new Legend(this.#context, this.#used_colors, items, true);
+        else this.#legend = new Legend(this.#context, this.#used_colors, items);
     }
 }
 
@@ -168,11 +183,17 @@ let radius = 200;
 
 let cake = new Cake(offset_x, offset_y, radius, ctx, 90);
 
-cake.addSlice(180);
-cake.addSlice(135);
+cake.addSlice(50);
+cake.addSlice(40);
+cake.addSlice(30);
+cake.addSlice(60);
+cake.addSlice(80);
+cake.addSlice(10);
+cake.addSlice(45);
+cake.addSlice(45);
 //cake.addSliceFromData(5);
 //cake.addSliceFromData(10);
 //cake.addSliceFromData(35);
 
-items = ["item1", "item2", "item3", "item4"];
+items = ["item1", "item2", "item3", "item4", "item5", "item6", "item7", "item8"];
 cake.createLegend(items);

@@ -25,15 +25,18 @@ light theme------------------------------
 chart--------------------------------------
 
 #D25AF3 un viola
+#8D69D0 un' altro viola
 #BF5A5A un rosso
+#E9476A un rosso gay
 #CE4129 un altro rosso
 #8264C7 un blu
 #5293C4 un azzurro
 #3D9AA0 un verde acqua
 #3DA179 un verde
 #779F19 un verde schifo
+#548461 un verde vomitissimo
 #989021 un giallo
+#808059 un giallo che tipo grigio (forse non è giallo)
 #AE7D22 un arancione
-
-
-
+#BB891C un altro arancione
+#CF298A un rosa
