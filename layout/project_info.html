@@ -5,6 +5,7 @@
 <header>
 	<h1>{{ Project Name }}</h1>
 	<button type="button" data-button-kind="editProject">Modifica Progetto</button>
+	<button type="button" data-button-kind="shareProject">Condividi Progetto</button>
 </header>
 
 <!-- Modifica Progetto -->
@@ -36,4 +37,12 @@
 	</form>
 </section>
 
-<script src="assets/js/modifica.js"></script>
+<!-- Condividi Progetto -->
+<section id="shareProject" class="hidden">
+	<h2>Condividi Progetto</h2>
+	<form id="linkForm">
+		<input type="text" id="linkField" value="https://example.com" readonly>
+		<button type="button" data-button-kind="shareProjectHide">Annulla</button>
+		<button type="button" id="copyShareProject">Copy Link</button>
+	</form>
+</section>

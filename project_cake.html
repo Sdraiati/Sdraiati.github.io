@@ -8,7 +8,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title> {{ Title }} </title>
-	<base href="https://sdraiati.github.io" />
+	<base href="./" />
 	<meta name="description" content="un sito per mostrare cose">
 	<meta name="keywords" content="sito, cose, dati, UN BEL GRAFICONE A TORTA">
 	<link rel="stylesheet" type="text/css" href="index.css">
@@ -18,37 +18,39 @@
 <body>
 <nav>
 	<div class="Logo">
-		<a href="index.html"><img src="img/logo.png" alt="logo"></a>
+		<a href="index.html"><img src="assets/img/logo.jpeg" alt="logo"></a>
 	</div>
 	<div class="Login">
 		<ul>
 			<li><button data-button-kind="accedi">Accedi</button></li>
 			<li><button data-button-kind="registrati">Registrati</button></li>
-			<li><a href="account_page.html" id="utente">Utente</a></li>
+			<li><a href="account_home.html" id="utente">Utente</a></li>
 		</ul>
 </nav>
 
 <section id="accedi" class="hidden">
 	<h2>Login</h2>
 	<form id="loginForm" action="javascript:void(0)">
-		<label for="inputEmail">Email:</label>
-		<input type="email" id="inputEmail" name="email" required>
-		<label for="inputPassword">Password:</label>
-		<input type="password" id="inputPassword" name="password" required>
+		<label for="loginEmail">Email:</label>
+		<input type="email" id="loginEmail" name="email" required autocomplete="email">
+		<label for="loginPassword">Password:</label>
+		<input type="password" id="loginPassword" name="password" required autocomplete="current-password">
 		<button type="button" data-button-kind="accediHide">Annulla</button>
-		<button type="submit" id="submitAccedi">Accedi</button>
+		<button type="submit" id="loginAccedi">Accedi</button>
 	</form>
 </section>
 
 <section id="registrati" class="hidden">
 	<h2>Registrazione</h2>
 	<form id="registratiForm" action="javascript:void(0)">
-		<label for="inputUsername">Nome Utente:</label>
-		<input type="text" id="inputUsername" name="username" required>
-		<label for="inputEmail">Email:</label>
-		<input type="email" id="inputEmail" name="email" required>
-		<label for="inputPassword">Password:</label>
-		<input type="password" id="inputPassword" name="password" required>
+		<label for="signupUsername">Nome Utente:</label>
+		<input type="text" id="signupUsername" name="username" required autocomplete="username">
+		<label for="signupEmail">Email:</label>
+		<input type="email" id="signupEmail" name="email" required autocomplete="email">
+		<label for="signupPassword">Password:</label>
+		<input type="password" id="signupPassword" name="password" required autocomplete="new-password">
+		<label for="signupConfirmPassword">Ripeti Password:</label>
+		<input type="password" id="signupConfirmPassword" name="password" required autocomplete="new-password">
 		<button type="button" data-button-kind="registratiHide">Annulla</button>
 		<button type="submit" id="submitRegistrati">Registrati</button>
 	</form>
@@ -61,6 +63,7 @@
 <header>
 	<h1>{{ Project Name }}</h1>
 	<button type="button" data-button-kind="editProject">Modifica Progetto</button>
+	<button type="button" data-button-kind="shareProject">Condividi Progetto</button>
 </header>
 
 <!-- Modifica Progetto -->
@@ -92,17 +95,25 @@
 	</form>
 </section>
 
-<script src="assets/js/modifica.js"></script>
+<!-- Condividi Progetto -->
+<section id="shareProject" class="hidden">
+	<h2>Condividi Progetto</h2>
+	<form id="linkForm">
+		<input type="text" id="linkField" value="https://example.com" readonly>
+		<button type="button" data-button-kind="shareProjectHide">Annulla</button>
+		<button type="button" id="copyShareProject">Copy Link</button>
+	</form>
+</section>
 
 
 	<!-- Canvas per il line chart -->
-	<canvas id="line-chart-canvas" class="line-chart-container"></canvas>
+	<canvas id="cake-chart-canvas" class="cake-chart-container"></canvas>
 <!-- Tabella delle transazioni -->
 <section>
 	<h2>Tabella delle Transazioni</h2>
 	<button data-button-kind="newTransaction">Nuova Transazione</button>
 	<!-- Inserisci qui la tabella delle transazioni -->
-	<table>
+	<table id="transazioniTable">
 		<!-- Intestazione della tabella -->
 		<thead>
 			<tr>
@@ -115,14 +126,14 @@
 		<!-- Corpo della tabella -->
 		<tbody>
 			<tr>
-				<td>01/01/2024</td>
+				<td>01/01/2025</td>
 				<td>20.00</td>
 				<td>Alimentari</td>
 				<td>Spesa generica 1</td>
 				<td><button data-button-kind="editTransaction" data-transazione-index="1">Modifica</button></td>
 			</tr>
 			<tr>
-				<td>05/01/2024</td>
+				<td>05/01/2026</td>
 				<td>15.50</td>
 				<td>Trasporti</td>
 				<td>Spesa generica 2</td>
@@ -137,21 +148,18 @@
 <section id="newTransaction" class="hidden">
 	<h2>Registra una Nuova Transazione</h2>
 	<form id="newTransactionForm" action="javascript:void(0)">
-		<label for=" inputData">Data:</label>
-		<input type="date" id="inputData" name="data" required>
-		<label for="inputImporto">Importo:</label>
-		<input type="number" id="inputImporto" name="importo" step="0.01" required>
-		<label for="inputTag">Tag:</label>
-		<input list="tags" id="inputTag" name="tag" required>
+		<label for="newData">Data:</label>
+		<input type="date" id="newData" name="data" required>
+		<label for="newImporto">Importo:</label>
+		<input type="number" id="newImporto" name="importo" step="0.01" required>
+		<label for="newTag">Tag:</label>
+		<input list="tags" id="newTag" name="tag" required>
 		<!-- Datalist per i tag -->
-		<datalist id="tags">
+		<datalist data-datalist="tag">
 			<!-- Inserisci qui i tag, dinamicamente -->
-			<!-- <option value="Alimentari">
-				<option value="Abbigliamento">
-				<option value="Trasporti"> -->
 		</datalist>
-		<label for="inputDescrizione">Descrizione:</label>
-		<input type="text" id="inputDescrizione" name="descrizione" required>
+		<label for="newDescrizione">Descrizione:</label>
+		<input type="text" id="newDescrizione" name="descrizione" required>
 		<button type="button" data-button-kind="newTransactionHide">Annulla</button>
 		<button type="submit" id="submitNewTransaction">Registra Transazione</button>
 	</form>
@@ -161,21 +169,18 @@
 <section id="editTransaction" class="hidden">
 	<h2>Modifica Transazione</h2>
 	<form id="editTransactionForm" action="javascript:void(0)">
-		<label for="inputData">Nuova Data:</label>
-		<input type="date" id="inputData" name="data">
-		<label for="inputCosto">Nuovo Importo (€):</label>
-		<input type="number" id="inputCosto" name="costo" step="0.01">
-		<label for="inputTag">Nuovo Tag:</label>
-		<input list="tags" id="inputTag" name="tag" required>
+		<label for="editData">Nuova Data:</label>
+		<input type="date" id="editData" name="data">
+		<label for="editCosto">Nuovo Importo (€):</label>
+		<input type="number" id="editCosto" name="costo" step="0.01">
+		<label for="editTag">Nuovo Tag:</label>
+		<input list="tags" id="editTag" name="tag" required>
 		<!-- Datalist per i tag -->
-		<datalist id="tags">
+		<datalist data-datalist="tag">
 			<!-- Inserisci qui i tag, dinamicamente -->
-			<option value="Alimentari">
-			<option value="Abbigliamento">
-			<option value="Trasporti">
 		</datalist>
-		<label for="inputDescrizione">Nuova Descrizione:</label>
-		<input type="text" id="inputDescrizione" name="descrizione">
+		<label for="editDescrizione">Nuova Descrizione:</label>
+		<input type="text" id="editDescrizione" name="descrizione">
 		<div class="form-buttons">
 			<button type="button" id="deleteTransazioneButton">Elimina Transazione</button>
 			<button type="button" data-button-kind="editTransactionHide">Annulla</button>
@@ -184,11 +189,11 @@
 	</form>
 </section>
 
-<script src="assets/js/modifica.js"></script>
+<script type="module" src="assets/js/transazioni_list.js"></script>
 
 <!-- Filtri per tag -->
 <aside class="filtri-tag-container">
-	<a href="cake_page.html">Vai al Grafico a Torta</a>
+	<a href="project_cake.html">Vai al Grafico a Torta</a>
 	<h2>Filtri per Tag</h2>
 	<!-- Inserisci qui i filtri per tag -->
 	<ul>
@@ -211,12 +216,11 @@
 	</ul>
 </aside>
 
-</body>
 <footer>
 	<div class="footer-list">
 		<h3>Prodotto</h3>
 		<ul>
-			<li><a href="account_page.html">I Miei Progetti</a></li>
+			<li><a href="account_home.html">I Miei Progetti</a></li>
 			<li><a href="about_us.html">About Us</a></li>
 		</ul>
 	</div>
@@ -225,11 +229,15 @@
 		<ul>
 			<li><a href="index.html">Homepage</a></li>
 			<li><a href="release_notes.html">Release Notes</a></li>
-			<li><a href="https://github.com/Sdraiati" target="_blank">GitHub
-					<img src="github_icon.png" alt="GitHub Icon"></a></li>
+			<li><a href="https://github.com/Sdraiati" target="_blank"> <img src="assets/img/github-mark-white.png"
+						id="github-mark"> GitHub </a></li>
 		</ul>
 	</div>
 </footer>
 
+<script src="assets/js/modifica.js"></script>
+<script src="assets/js/footerColors.js"></script>
+
+</body>
 
 </html>

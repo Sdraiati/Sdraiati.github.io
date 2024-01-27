@@ -6,7 +6,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title> {{ Title }} </title>
-	<base href="https://sdraiati.github.io" />
+	<base href="./" />
 	<meta name="description" content="un sito per mostrare cose">
 	<meta name="keywords" content="sito, cose, dati, UN BEL GRAFICONE A TORTA">
 	<link rel="stylesheet" type="text/css" href="index.css">
@@ -16,37 +16,39 @@
 <body>
 <nav>
 	<div class="Logo">
-		<a href="index.html"><img src="img/logo.png" alt="logo"></a>
+		<a href="index.html"><img src="assets/img/logo.jpeg" alt="logo"></a>
 	</div>
 	<div class="Login">
 		<ul>
 			<li><button data-button-kind="accedi">Accedi</button></li>
 			<li><button data-button-kind="registrati">Registrati</button></li>
-			<li><a href="account_page.html" id="utente">Utente</a></li>
+			<li><a href="account_home.html" id="utente">Utente</a></li>
 		</ul>
 </nav>
 
 <section id="accedi" class="hidden">
 	<h2>Login</h2>
 	<form id="loginForm" action="javascript:void(0)">
-		<label for="inputEmail">Email:</label>
-		<input type="email" id="inputEmail" name="email" required>
-		<label for="inputPassword">Password:</label>
-		<input type="password" id="inputPassword" name="password" required>
+		<label for="loginEmail">Email:</label>
+		<input type="email" id="loginEmail" name="email" required autocomplete="email">
+		<label for="loginPassword">Password:</label>
+		<input type="password" id="loginPassword" name="password" required autocomplete="current-password">
 		<button type="button" data-button-kind="accediHide">Annulla</button>
-		<button type="submit" id="submitAccedi">Accedi</button>
+		<button type="submit" id="loginAccedi">Accedi</button>
 	</form>
 </section>
 
 <section id="registrati" class="hidden">
 	<h2>Registrazione</h2>
 	<form id="registratiForm" action="javascript:void(0)">
-		<label for="inputUsername">Nome Utente:</label>
-		<input type="text" id="inputUsername" name="username" required>
-		<label for="inputEmail">Email:</label>
-		<input type="email" id="inputEmail" name="email" required>
-		<label for="inputPassword">Password:</label>
-		<input type="password" id="inputPassword" name="password" required>
+		<label for="signupUsername">Nome Utente:</label>
+		<input type="text" id="signupUsername" name="username" required autocomplete="username">
+		<label for="signupEmail">Email:</label>
+		<input type="email" id="signupEmail" name="email" required autocomplete="email">
+		<label for="signupPassword">Password:</label>
+		<input type="password" id="signupPassword" name="password" required autocomplete="new-password">
+		<label for="signupConfirmPassword">Ripeti Password:</label>
+		<input type="password" id="signupConfirmPassword" name="password" required autocomplete="new-password">
 		<button type="button" data-button-kind="registratiHide">Annulla</button>
 		<button type="submit" id="submitRegistrati">Registrati</button>
 	</form>
@@ -77,7 +79,7 @@
 	<div class="footer-list">
 		<h3>Prodotto</h3>
 		<ul>
-			<li><a href="account_page.html">I Miei Progetti</a></li>
+			<li><a href="account_home.html">I Miei Progetti</a></li>
 			<li><a href="about_us.html">About Us</a></li>
 		</ul>
 	</div>
@@ -86,11 +88,14 @@
 		<ul>
 			<li><a href="index.html">Homepage</a></li>
 			<li><a href="release_notes.html">Release Notes</a></li>
-			<li><a href="https://github.com/Sdraiati" target="_blank">GitHub
-					<img src="github_icon.png" alt="GitHub Icon"></a></li>
+			<li><a href="https://github.com/Sdraiati" target="_blank"> <img src="assets/img/github-mark-white.png"
+						id="github-mark"> GitHub </a></li>
 		</ul>
 	</div>
 </footer>
+
+<script src="assets/js/modifica.js"></script>
+<script src="assets/js/footerColors.js"></script>
 
 
 </body>

@@ -1,3 +1,65 @@
+<!-- title: Shared Project -->
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title> {{ Title }} </title>
+	<base href="./" />
+	<meta name="description" content="un sito per mostrare cose">
+	<meta name="keywords" content="sito, cose, dati, UN BEL GRAFICONE A TORTA">
+	<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+
+<body>
+<nav>
+	<div class="Logo">
+		<a href="index.html"><img src="assets/img/logo.jpeg" alt="logo"></a>
+	</div>
+	<div class="Login">
+		<ul>
+			<li><button data-button-kind="accedi">Accedi</button></li>
+			<li><button data-button-kind="registrati">Registrati</button></li>
+			<li><a href="account_home.html" id="utente">Utente</a></li>
+		</ul>
+</nav>
+
+<section id="accedi" class="hidden">
+	<h2>Login</h2>
+	<form id="loginForm" action="javascript:void(0)">
+		<label for="loginEmail">Email:</label>
+		<input type="email" id="loginEmail" name="email" required autocomplete="email">
+		<label for="loginPassword">Password:</label>
+		<input type="password" id="loginPassword" name="password" required autocomplete="current-password">
+		<button type="button" data-button-kind="accediHide">Annulla</button>
+		<button type="submit" id="loginAccedi">Accedi</button>
+	</form>
+</section>
+
+<section id="registrati" class="hidden">
+	<h2>Registrazione</h2>
+	<form id="registratiForm" action="javascript:void(0)">
+		<label for="signupUsername">Nome Utente:</label>
+		<input type="text" id="signupUsername" name="username" required autocomplete="username">
+		<label for="signupEmail">Email:</label>
+		<input type="email" id="signupEmail" name="email" required autocomplete="email">
+		<label for="signupPassword">Password:</label>
+		<input type="password" id="signupPassword" name="password" required autocomplete="new-password">
+		<label for="signupConfirmPassword">Ripeti Password:</label>
+		<input type="password" id="signupConfirmPassword" name="password" required autocomplete="new-password">
+		<button type="button" data-button-kind="registratiHide">Annulla</button>
+		<button type="submit" id="submitRegistrati">Registrati</button>
+	</form>
+</section>
+
+
+	<header>
+		<h1>Shared Project - {{ Project Name }}</h1>
+	</header>
+
+	<canvas id="line-chart-canvas" class="line-chart-container"></canvas>
 <!-- Tabella delle transazioni -->
 <section>
 	<h2>Tabella delle Transazioni</h2>
@@ -80,3 +142,22 @@
 </section>
 
 <script type="module" src="assets/js/transazioni_list.js"></script>
+
+<footer class="message-footer">
+	<button type="button" data-button-kind="joinProject">Partecipa</button>
+</footer>
+
+<section id="joinProject" class="hidden">
+	<h1>Partecipa al progetto</h1>
+	<form id="joinProjectForm" action="javascript:void(0)">
+		<div class="form-buttons">
+			<button type="button" data-button-kind="joinProjectHide">Annulla</button>
+			<button type="submit" id="submitJoinProject">Partecipa</button>
+		</div>
+</section>
+
+
+</body>
+<script src="assets/js/modifica.js"></script>
+
+</html>
