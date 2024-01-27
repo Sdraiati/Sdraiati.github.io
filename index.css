@@ -70,6 +70,11 @@ nav div img{
     box-shadow: 5px 10px #000000;
 }
 
+img[src*="mappa_del_sito"]
+{
+    width: 50%;
+}
+
 nav div
 {
     margin: 20px;
