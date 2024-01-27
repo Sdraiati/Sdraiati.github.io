@@ -133,7 +133,7 @@ button{
     flex-direction: column;
     justify-content: center;
     position: fixed;
-    z-index: 2;
+    z-index: 200;
     width: 20%;
     background-color: var(--popUpColor);
     padding: 5%;

@@ -1,0 +1,167 @@
+<!-- title: Shared Project -->
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title> {{ Title }} </title>
+	<base href="https://sdraiati.github.io" />
+	<meta name="description" content="un sito per mostrare cose">
+	<meta name="keywords" content="sito, cose, dati, UN BEL GRAFICONE A TORTA">
+	<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+
+<body>
+<nav>
+	<div class="Logo">
+		<a href="index.html"><img src="img/logo.png" alt="logo"></a>
+	</div>
+	<div class="Login">
+		<ul>
+			<li><button data-button-kind="accedi">Accedi</button></li>
+			<li><button data-button-kind="registrati">Registrati</button></li>
+			<li><a href="account_page.html" id="utente">Utente</a></li>
+		</ul>
+</nav>
+
+<section id="accedi" class="hidden">
+	<h2>Login</h2>
+	<form id="loginForm" action="javascript:void(0)">
+		<label for="inputEmail">Email:</label>
+		<input type="email" id="inputEmail" name="email" required>
+		<label for="inputPassword">Password:</label>
+		<input type="password" id="inputPassword" name="password" required>
+		<button type="button" data-button-kind="accediHide">Annulla</button>
+		<button type="submit" id="submitAccedi">Accedi</button>
+	</form>
+</section>
+
+<section id="registrati" class="hidden">
+	<h2>Registrazione</h2>
+	<form id="registratiForm" action="javascript:void(0)">
+		<label for="inputUsername">Nome Utente:</label>
+		<input type="text" id="inputUsername" name="username" required>
+		<label for="inputEmail">Email:</label>
+		<input type="email" id="inputEmail" name="email" required>
+		<label for="inputPassword">Password:</label>
+		<input type="password" id="inputPassword" name="password" required>
+		<button type="button" data-button-kind="registratiHide">Annulla</button>
+		<button type="submit" id="submitRegistrati">Registrati</button>
+	</form>
+</section>
+
+
+	<header>
+		<h1>Shared Project - {{ Project Name }}</h1>
+	</header>
+
+	<canvas id="line-chart-canvas" class="line-chart-container"></canvas>
+<!-- Tabella delle transazioni -->
+<section>
+	<h2>Tabella delle Transazioni</h2>
+	<button data-button-kind="newTransaction">Nuova Transazione</button>
+	<!-- Inserisci qui la tabella delle transazioni -->
+	<table>
+		<!-- Intestazione della tabella -->
+		<thead>
+			<tr>
+				<th>Data</th>
+				<th>Costo (€)</th>
+				<th>Tag</th>
+				<th>Descrizione</th>
+			</tr>
+		</thead>
+		<!-- Corpo della tabella -->
+		<tbody>
+			<tr>
+				<td>01/01/2024</td>
+				<td>20.00</td>
+				<td>Alimentari</td>
+				<td>Spesa generica 1</td>
+				<td><button data-button-kind="editTransaction" data-transazione-index="1">Modifica</button></td>
+			</tr>
+			<tr>
+				<td>05/01/2024</td>
+				<td>15.50</td>
+				<td>Trasporti</td>
+				<td>Spesa generica 2</td>
+				<td><button data-button-kind="editTransaction" data-transazione-index="2">Modifica</button></td>
+			</tr>
+			<!-- Aggiungi altre righe della tabella, se necessario -->
+		</tbody>
+	</table>
+</section>
+
+<!-- Registra una Nuova Transazione -->
+<section id="newTransaction" class="hidden">
+	<h2>Registra una Nuova Transazione</h2>
+	<form id="newTransactionForm" action="javascript:void(0)">
+		<label for=" inputData">Data:</label>
+		<input type="date" id="inputData" name="data" required>
+		<label for="inputImporto">Importo:</label>
+		<input type="number" id="inputImporto" name="importo" step="0.01" required>
+		<label for="inputTag">Tag:</label>
+		<input list="tags" id="inputTag" name="tag" required>
+		<!-- Datalist per i tag -->
+		<datalist id="tags">
+			<!-- Inserisci qui i tag, dinamicamente -->
+			<!-- <option value="Alimentari">
+				<option value="Abbigliamento">
+				<option value="Trasporti"> -->
+		</datalist>
+		<label for="inputDescrizione">Descrizione:</label>
+		<input type="text" id="inputDescrizione" name="descrizione" required>
+		<button type="button" data-button-kind="newTransactionHide">Annulla</button>
+		<button type="submit" id="submitNewTransaction">Registra Transazione</button>
+	</form>
+</section>
+
+<!-- Modifica Transazione -->
+<section id="editTransaction" class="hidden">
+	<h2>Modifica Transazione</h2>
+	<form id="editTransactionForm" action="javascript:void(0)">
+		<label for="inputData">Nuova Data:</label>
+		<input type="date" id="inputData" name="data">
+		<label for="inputCosto">Nuovo Importo (€):</label>
+		<input type="number" id="inputCosto" name="costo" step="0.01">
+		<label for="inputTag">Nuovo Tag:</label>
+		<input list="tags" id="inputTag" name="tag" required>
+		<!-- Datalist per i tag -->
+		<datalist id="tags">
+			<!-- Inserisci qui i tag, dinamicamente -->
+			<option value="Alimentari">
+			<option value="Abbigliamento">
+			<option value="Trasporti">
+		</datalist>
+		<label for="inputDescrizione">Nuova Descrizione:</label>
+		<input type="text" id="inputDescrizione" name="descrizione">
+		<div class="form-buttons">
+			<button type="button" id="deleteTransazioneButton">Elimina Transazione</button>
+			<button type="button" data-button-kind="editTransactionHide">Annulla</button>
+			<button type="submit" id="submitEditTransaction">Salva Modifiche</button>
+		</div>
+	</form>
+</section>
+
+<script src="assets/js/modifica.js"></script>
+
+<footer class="message-footer">
+	<button type="button" data-button-kind="joinProject">Partecipa</button>
+</footer>
+
+<section id="joinProject" class="hidden">
+	<h1>Partecipa al progetto</h1>
+	<form id="joinProjectForm" action="javascript:void(0)">
+		<div class="form-buttons">
+			<button type="button" data-button-kind="joinProjectHide">Annulla</button>
+			<button type="submit" id="submitJoinProject">Partecipa</button>
+		</div>
+</section>
+
+
+</body>
+<script src="assets/js/modifica.js"></script>
+
+</html>
