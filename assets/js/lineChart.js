@@ -9,6 +9,7 @@ function defaultColor() {
 	newParagraph.textContent = "This is a new paragraph.";
 	document.body.appendChild(newParagraph);
 	let computedStyle = window.getComputedStyle(newParagraph);
+	newParagraph.remove();
 	return computedStyle.color;
 }
 
