@@ -192,3 +192,8 @@ ul li {
     margin-top: 10px;
 }
 }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+}
