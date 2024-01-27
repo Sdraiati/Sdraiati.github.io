@@ -3,7 +3,7 @@
 // Definisci le directory di origine e destinazione
 $contentDir = 'content/';
 $layoutDir = 'layout/';
-$outputDir = 'output/';
+$outputDir = './';
 
 // Leggi tutti i file nella cartella "content"
 $contentFiles = scandir($contentDir);
