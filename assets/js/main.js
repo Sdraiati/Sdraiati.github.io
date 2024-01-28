@@ -6,4 +6,4 @@ Transazione.addObserver(draw_chart)
 Transazione.addObserver(update_transazioni_table)
 
 
-Transazione.update()
+Transazione.update(Transazione.get())

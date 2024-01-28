@@ -51,12 +51,11 @@ class Transazione {
 	*/
 	static get() {
 		// Supponiamo che tu abbia un array di oggetti che rappresentano le transazioni
-		let transazioni = JSON.parse(sessionStorage.getItem("transazioni_displayed"))
+		let transazioni = JSON.parse(sessionStorage.getItem("transazioni"))
 
 		if (transazioni == null) {
 			transazioni = Transazione.fetch()
 			sessionStorage.setItem("transazioni", JSON.stringify(transazioni))
-			sessionStorage.setItem("transazioni_displayed", JSON.stringify(transazioni))
 			return transazioni
 		}
 
@@ -71,11 +70,14 @@ class Transazione {
 	}
 
 	static setTag(tag) {
-		let filtered = JSON.parse(sessionStorage.getItem("transazioni")).filter(
+		if (tag == null) {
+			Transazione.update(Transazione.get())
+			return;
+		}
+		let filtered = Transazione.get().filter(
 			(transazione) => transazione.tag == tag
 		);
-		sessionStorage.setItem("transazioni_displayed", JSON.stringify(filtered));
-		Transazione.update();
+		Transazione.update(filtered);
 	}
 
 	/** Aggiunge un observer alla lista degli observer
@@ -86,9 +88,10 @@ class Transazione {
 	}
 
 	/** Update the observers
+	* @param {Transazione[]} transazioni - Array di oggetti Transazione
 	*/
-	static update() {
-		transazioni_observers_fn.forEach((observer_fn) => observer_fn(Transazione.get()));
+	static update(transazioni) {
+		transazioni_observers_fn.forEach((observer_fn) => observer_fn(transazioni));
 	}
 }
 

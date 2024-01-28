@@ -8,7 +8,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title> {{ Title }} </title>
-	<base href="./" />
+	<base href="/" />
 	<meta name="description" content="un sito per mostrare cose">
 	<meta name="keywords" content="sito, cose, dati, UN BEL GRAFICONE A TORTA">
 	<link rel="stylesheet" type="text/css" href="index.css">
@@ -21,10 +21,10 @@
 		<a href="index.html"><img src="assets/img/logo.jpeg" alt="logo"></a>
 	</div>
 	<div class="Login">
-		<ul>
+		<ul class="login-list">
 			<li><button data-button-kind="accedi">Accedi</button></li>
 			<li><button data-button-kind="registrati">Registrati</button></li>
-			<li><a href="account_home.html" id="utente">Utente</a></li>
+			<li class="hidden"><a href="account_home.html" id="utente">Utente</a></li>
 		</ul>
 </nav>
 
@@ -55,6 +55,8 @@
 		<button type="submit" id="submitRegistrati">Registrati</button>
 	</form>
 </section>
+
+<script type="module" src="assets/js/nav.js"></script>
 
 <!-- <title>{{Project Name}}</title> -->
 <!-- Riferimento al file JavaScript esterno per la generazione del line chart -->
@@ -196,25 +198,23 @@
 	<a href="project_cake.html">Vai al Grafico a Torta</a>
 	<h2>Filtri per Tag</h2>
 	<!-- Inserisci qui i filtri per tag -->
-	<ul>
-		<li>Tag 1</li>
-		<li>Tag 2</li>
-		<!-- Aggiungi altri filtri per tag, se necessario -->
-	</ul>
+	<form id="tag_sidebar">
+	</form>
 
 	<a href="tag_page.html">Vai alla Pagina dei Tag</a>
 </aside>
+
+<script type="module" src="assets/js/tag_sidebar.js"></script>
 
 <!-- Partecipanti -->
 <aside class="partecipanti-container">
 	<h2>Partecipanti</h2>
 	<!-- Inserisci qui l'elenco dei partecipanti -->
-	<ul>
-		<li>Partecipante 1</li>
-		<li>Partecipante 2</li>
-		<!-- Aggiungi altri partecipanti, se necessario -->
+	<ul id="partecipanti-list">
 	</ul>
 </aside>
+
+<script type="module" src="assets/js/partecipanti_sidebar.js"></script>
 
 <footer>
 	<div class="footer-list">

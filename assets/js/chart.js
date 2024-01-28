@@ -14,10 +14,6 @@ class Chart {
 		const computedStyle = getComputedStyle(this.canvas);
 		const cssWidth = parseInt(computedStyle.getPropertyValue('width'), 10);
 		const cssHeight = parseInt(computedStyle.getPropertyValue('height'), 10);
-		this.axis = {
-			x: parseFloat(computedStyle.getPropertyValue('--axisX')),
-			y: parseFloat(computedStyle.getPropertyValue('--axisY')),
-		}
 
 		this.line = {
 			color: computedStyle.getPropertyValue('--lineColor'),
@@ -30,7 +26,6 @@ class Chart {
 		}
 
 		this.fontSize = computedStyle.getPropertyValue('--fontSize') * this.canvas.width / (100 * this.devicePixelRatio)
-
 
 
 		// improve the pixel ratio
@@ -49,13 +44,6 @@ class Chart {
 
 	clear() {
 		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-	}
-
-	setAxis(x, y) {
-		this.axis = {
-			x: x,
-			y: y
-		}
 	}
 
 	x(x) {
@@ -94,9 +82,10 @@ class Chart {
 	}
 
 	// write text
-	text(text, x, y, color = 'black', padding = 5, font = 'Arial') {
+	text(text, x, y, color = 'black', padding = 5) {
 		this.ctx.fillStyle = color
-		this.ctx.font = `${this.fontSize}em ${font}`
+		let p_font = this.ctx.font
+		this.ctx.font = `${this.fontSize}em Arial`
 
 		if (typeof text === 'number') {
 			// bug fix
@@ -104,6 +93,7 @@ class Chart {
 		}
 
 		this.ctx.fillText(text, this.x(x) + padding, this.y(y) - padding)
+		this.ctx.font = p_font
 	}
 
 	// draw grid
@@ -122,14 +112,16 @@ class Chart {
 		this.max = max
 		this.min = min
 
-		let max_l = this.ctx.measureText(max.toString())
-		let min_l = this.ctx.measureText(min.toString())
+		let max_l = this.ctx.measureText(max.toFixed(0).toString())
+		let min_l = this.ctx.measureText(min.toFixed(0).toString())
 
 		let width = Math.max(max_l.width, min_l.width) / this.canvas.width
 		let height = (max_l.actualBoundingBoxAscent + max_l.actualBoundingBoxDescent + 10) / this.canvas.height
 
-		this.axis.x = width * 5
-		this.axis.y = height * 2
+		this.axis = {
+			x: width * 5,
+			y: height * 2
+		}
 	}
 
 	// LineChart

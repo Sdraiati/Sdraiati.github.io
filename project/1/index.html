@@ -1,4 +1,6 @@
-<!-- title: Shared Project -->
+<!-- <title>{{Project Name}}</title> -->
+<!-- Riferimento al file JavaScript esterno per la generazione del line chart -->
+<!-- <script src="line_chart_script.js"></script> -->
 <!DOCTYPE html>
 <html lang="it">
 
@@ -19,10 +21,10 @@
 		<a href="index.html"><img src="assets/img/logo.jpeg" alt="logo"></a>
 	</div>
 	<div class="Login">
-		<ul class="login-list">
+		<ul>
 			<li><button data-button-kind="accedi">Accedi</button></li>
 			<li><button data-button-kind="registrati">Registrati</button></li>
-			<li class="hidden"><a href="account_home.html" id="utente">Utente</a></li>
+			<li><a href="account_home.html" id="utente">Utente</a></li>
 		</ul>
 </nav>
 
@@ -54,14 +56,58 @@
 	</form>
 </section>
 
-<script type="module" src="assets/js/nav.js"></script>
+<!-- <title>{{Project Name}}</title> -->
+<!-- Riferimento al file JavaScript esterno per la generazione del line chart -->
+<!-- <script src="line_chart_script.js"></script> -->
+
+<header>
+	<h1>{{ Project Name }}</h1>
+	<button type="button" data-button-kind="editProject">Modifica Progetto</button>
+	<button type="button" data-button-kind="shareProject">Condividi Progetto</button>
+</header>
+
+<!-- Modifica Progetto -->
+<section id="editProject" class="hidden">
+	<h2>Modifica Progetto</h2>
+	<form id="editProjectForm" action="javascript:void(0)">
+		<label for="inputNewNomeProgetto">Nuovo Nome Progetto:</label>
+		<input type="text" id="inputNewNomeProgetto" name="newNomeProgetto">
+		<label for="inputNewDescrizioneProgetto">Nuova Descrizione:</label>
+		<textarea id="inputNewDescrizioneProgetto" name="newDescrizioneProgetto"></textarea>
+		<div class="form-buttons">
+			<button type="button" data-button-kind="deleteProject">Elimina Progetto</button>
+			<button type="button" data-button-kind="editProjectHide">Annulla</button>
+			<button type="submit" id="submitEditProject">Salva Modifiche</button>
+		</div>
+	</form>
+</section>
+
+<!-- Elimina Progetto -->
+<section id="deleteProject" class="hidden">
+	<h2>Conferma Eliminazione Progetto</h2>
+	<form id="deleteProjectForm" action="javascript:void(0)">
+		<label for="inputPassword">Inserisci la Password:</label>
+		<input type="password" id="inputPassword" name="password" required>
+		<div class="form-buttons">
+			<button type="button" data-button-kind="deleteProjectHide">Annulla</button>
+			<button type="submit" id="submitDeleteProject">Conferma Eliminazione</button>
+		</div>
+	</form>
+</section>
+
+<!-- Condividi Progetto -->
+<section id="shareProject" class="hidden">
+	<h2>Condividi Progetto</h2>
+	<form id="linkForm">
+		<input type="text" id="linkField" value="https://example.com" readonly>
+		<button type="button" data-button-kind="shareProjectHide">Annulla</button>
+		<button type="button" id="copyShareProject">Copy Link</button>
+	</form>
+</section>
 
 
-	<header>
-		<h1>Shared Project - {{ Project Name }}</h1>
-	</header>
-
-	<canvas id="line-chart-canvas" class="line-chart-container"></canvas>
+	<!-- Canvas per il line chart -->
+	<canvas id="line-chart" class="line-chart"></canvas>
 <!-- Tabella delle transazioni -->
 <section>
 	<h2>Tabella delle Transazioni</h2>
@@ -145,21 +191,52 @@
 
 <script type="module" src="assets/js/transazioni_list.js"></script>
 
-<footer class="message-footer">
-	<button type="button" data-button-kind="joinProject">Partecipa</button>
+<!-- Filtri per tag -->
+<aside class="filtri-tag-container">
+	<a href="project_cake.html">Vai al Grafico a Torta</a>
+	<h2>Filtri per Tag</h2>
+	<!-- Inserisci qui i filtri per tag -->
+	<form id="tag_sidebar">
+	</form>
+
+	<a href="tag_page.html">Vai alla Pagina dei Tag</a>
+</aside>
+
+<script type="module" src="assets/js/tag_sidebar.js"></script>
+
+<!-- Partecipanti -->
+<aside class="partecipanti-container">
+	<h2>Partecipanti</h2>
+	<!-- Inserisci qui l'elenco dei partecipanti -->
+	<ul id="partecipanti-list">
+	</ul>
+</aside>
+
+<script type="module" src="assets/js/partecipanti_sidebar.js"></script>
+
+<footer>
+	<div class="footer-list">
+		<h3>Prodotto</h3>
+		<ul>
+			<li><a href="account_home.html">I Miei Progetti</a></li>
+			<li><a href="about_us.html">About Us</a></li>
+		</ul>
+	</div>
+	<div class="footer-list">
+		<h3>Risorse</h3>
+		<ul>
+			<li><a href="index.html">Homepage</a></li>
+			<li><a href="release_notes.html">Release Notes</a></li>
+			<li><a href="https://github.com/Sdraiati" target="_blank"> <img src="assets/img/github-mark-white.png"
+						id="github-mark"> GitHub </a></li>
+		</ul>
+	</div>
 </footer>
 
-<section id="joinProject" class="hidden">
-	<h1>Partecipa al progetto</h1>
-	<form id="joinProjectForm" action="javascript:void(0)">
-		<div class="form-buttons">
-			<button type="button" data-button-kind="joinProjectHide">Annulla</button>
-			<button type="submit" id="submitJoinProject">Partecipa</button>
-		</div>
-</section>
-
+<script src="assets/js/modifica.js"></script>
+<script src="assets/js/footerColors.js"></script>
 
 </body>
-<script src="assets/js/modifica.js"></script>
+<script type="module" src="assets/js/main.js"></script>
 
 </html>
