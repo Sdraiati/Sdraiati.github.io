@@ -323,3 +323,8 @@ button:hover
         padding-bottom: 300px; 
     }
 }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+}
