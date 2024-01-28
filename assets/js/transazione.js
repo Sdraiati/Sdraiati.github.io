@@ -1,3 +1,5 @@
+var transazioni_observers_fn = []
+
 class Transazione {
 	/** Crea un oggetto Transazione
 	* @param {Date} data - Oggetto Date che rappresenta la data
@@ -24,6 +26,69 @@ class Transazione {
 		createCell(newRow, this.descrizione)
 		createButtonCell(newRow, index)
 		return newRow
+	}
+
+	/** Restituisce un array di oggetti Transazione
+	* @returns {Transazione[]} Array di oggetti Transazione dal server
+	*/
+	static fetch() {
+		return [
+			new Transazione(new Date(2023, 0, 1), 2000, "Alimentari", "Spesa generica 1"),
+			new Transazione(new Date(2024, 0, 1), 20, "Alimentari", "Spesa generica 1"),
+			new Transazione(new Date(2024, 0, 2), 200, "Alimentari", "Spesa generica 1"),
+			new Transazione(new Date(2024, 0, 3), 200, "Alimentari", "Spesa generica 1"),
+			new Transazione(new Date(2024, 0, 4), 200, "Alimentari", "Spesa generica 1"),
+			new Transazione(new Date(2024, 0, 5), -2000, "Alimentari", "Spesa generica 1"),
+			new Transazione(new Date(2024, 0, 6), 15.5, "Trasporti", "Spesa generica 2")
+		]
+
+		// bisogna riordinare le transazioni per data!!
+	}
+
+	/** Restituisce un array di oggetti Transazione
+	* @returns {Transazione[]} Array di oggetti Transazione dal server e setta
+		* transazioni in sessionStorage
+	*/
+	static get() {
+		// Supponiamo che tu abbia un array di oggetti che rappresentano le transazioni
+		let transazioni = JSON.parse(sessionStorage.getItem("transazioni_displayed"))
+
+		if (transazioni == null) {
+			transazioni = Transazione.fetch()
+			sessionStorage.setItem("transazioni", JSON.stringify(transazioni))
+			sessionStorage.setItem("transazioni_displayed", JSON.stringify(transazioni))
+			return transazioni
+		}
+
+		// Convert the parsed data back into an array of Transazione objects
+		return transazioni.map((obj) =>
+			new Transazione(
+				new Date(obj.data),
+				obj.importo,
+				obj.tag,
+				obj.descrizione)
+		)
+	}
+
+	static setTag(tag) {
+		let filtered = JSON.parse(sessionStorage.getItem("transazioni")).filter(
+			(transazione) => transazione.tag == tag
+		);
+		sessionStorage.setItem("transazioni_displayed", JSON.stringify(filtered));
+		Transazione.update();
+	}
+
+	/** Aggiunge un observer alla lista degli observer
+	* @param {function} fn - Funzione da aggiungere alla lista degli observer
+	*/
+	static addObserver(fn) {
+		transazioni_observers_fn.push(fn);
+	}
+
+	/** Update the observers
+	*/
+	static update() {
+		transazioni_observers_fn.forEach((observer_fn) => observer_fn(Transazione.get()));
 	}
 }
 
