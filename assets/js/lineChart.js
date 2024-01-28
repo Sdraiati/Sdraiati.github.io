@@ -81,13 +81,17 @@ function drawLineChart(chart, saldi) {
 		return [index / (saldi.length - 1), (saldo.importo - chart.min) / (chart.max - chart.min)]
 	})
 
+	let importi = saldi.slice(1).map((saldo) => saldo.importo)
+		.map((importo, index) => importo - saldi[index].importo)
+
+	let max_importo = importi.reduce((acc, importo) => Math.max(acc, Math.abs(importo)), 0)
+
 	chart.clear()
 	chart.drawAxis()
 	chart.drawDecorations()
 	chart.lines(lc_points)
-	saldi.slice(1)
-		.map((saldo, index) => saldo.importo - saldi[index].importo)
-		.map((importo) => importo / (Math.max(chart.max, -chart.min)))
+	importi
+		.map((importo) => importo / max_importo)
 		.forEach((importo, index) => {
 			if (importo < 0) {
 				chart.drawRect(lc_points[index + 1][0], -importo, 1 / (saldi.length - 1), 1 / 10, 'red')

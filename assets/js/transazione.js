@@ -38,7 +38,7 @@ class Transazione {
 			new Transazione(new Date(2024, 0, 2), 200, "Alimentari", "Spesa generica 1"),
 			new Transazione(new Date(2024, 0, 3), 200, "Alimentari", "Spesa generica 1"),
 			new Transazione(new Date(2024, 0, 4), 200, "Alimentari", "Spesa generica 1"),
-			new Transazione(new Date(2024, 0, 5), -2000, "Alimentari", "Spesa generica 1"),
+			new Transazione(new Date(2024, 0, 5), -200, "Alimentari", "Spesa generica 1"),
 			new Transazione(new Date(2024, 0, 6), 15.5, "Trasporti", "Spesa generica 2")
 		]
 
