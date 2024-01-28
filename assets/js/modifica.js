@@ -4,7 +4,6 @@ document.body.addEventListener("click", function(event) {
 	if (event.target.tagName === "BUTTON") {
 		// Show an alert with the ID of the clicked button
 		let id = event.target.dataset.buttonKind
-		console.log(id)
 		if (id == null) {
 			return
 		} else if (id.endsWith("Hide")) {

@@ -33,7 +33,7 @@ class Transazione {
 	*/
 	static fetch() {
 		return [
-			new Transazione(new Date(2023, 0, 1), 2000, "Alimentari", "Spesa generica 1"),
+			new Transazione(new Date(2023, 0, 1), 200, "Alimentari", "Spesa generica 1"),
 			new Transazione(new Date(2024, 0, 1), 20, "Alimentari", "Spesa generica 1"),
 			new Transazione(new Date(2024, 0, 2), 200, "Alimentari", "Spesa generica 1"),
 			new Transazione(new Date(2024, 0, 3), 200, "Alimentari", "Spesa generica 1"),

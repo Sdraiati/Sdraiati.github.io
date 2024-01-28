@@ -235,10 +235,8 @@ button:hover
 #line-chart {
 	width: 50%;
 	--fontSize: 1;
-	--axisX: 0.08;
-	--axisY: 0.08;
 	--lineColor: var(--textColor);
-	--linewidth: 1;
+	--lineWidth: 2;
 	--decorationColor: var(--linkHoverColor);
 	--decorationWidth: 1;
 }

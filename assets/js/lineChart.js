@@ -62,8 +62,7 @@ function draw_chart(transazioni) {
 		return Math.min(acc, saldo)
 	}, 0)
 
-	chart.setMax(max)
-	chart.setMin(min)
+	chart.setMaxMin(max, min)
 
 	drawLineChart(chart, saldi)
 	chart.canvas.addEventListener('mousemove', (event) => {
@@ -89,7 +88,7 @@ function drawLineChart(chart, saldi) {
 	chart.clear()
 	chart.drawAxis()
 	chart.drawDecorations()
-	chart.lines(lc_points)
+	chart.lines(lc_points, [], chart.line.color, chart.line.width)
 	importi
 		.map((importo) => importo / max_importo)
 		.forEach((importo, index) => {

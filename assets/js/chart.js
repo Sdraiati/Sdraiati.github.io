@@ -9,7 +9,6 @@ class Chart {
 	}
 
 	setup() {
-		console.log(this.canvas)
 		// Get the CSS-computed width and height of the canvas
 		this.devicePixelRatio = window.devicePixelRatio || 1
 		const computedStyle = getComputedStyle(this.canvas);
@@ -37,15 +36,6 @@ class Chart {
 		// improve the pixel ratio
 		this.canvas.width = Math.floor(cssWidth * this.devicePixelRatio)
 		this.canvas.height = Math.floor(cssHeight * this.devicePixelRatio)
-	}
-
-	/** Set the color and width of the line
-	* @param {string} color - color of the line
-	* @param {number} width - width of the line
-	*/
-	setLine(color, width) {
-		this.line.color = color
-		this.line.width = width
 	}
 
 	/** Set the color and width of the decorations
@@ -83,9 +73,9 @@ class Chart {
 	* @param {string} color - color of the line
 	* @param {number} width - width of the line
 	*/
-	lines(points, dash = [], color = this.line.color, width = 1) {
-		console.log(points)
+	lines(points, dash = [], color, width) {
 		this.ctx.strokeStyle = color
+		this.ctx.fillStyle = color
 		this.ctx.lineWidth = width
 
 		points = points.map((point) => {
@@ -121,19 +111,25 @@ class Chart {
 		let x = [[0, 0], [1, 0]]
 		let y = [[0, 0], [0, 1]]
 
-		this.lines(x, [], this.line.color, this.line.color)
+		this.lines(x, [], this.line.color, this.line.width)
 		this.lines(y, [], this.line.color, this.line.width)
 
 		this.text(xLegend, 1, 0, this.line.color, 12)
 		this.text(yLegend, 0, 1, this.line.color, 12)
 	}
 
-	setMax(max) {
+	setMaxMin(max, min) {
 		this.max = max
-	}
-
-	setMin(min) {
 		this.min = min
+
+		let max_l = this.ctx.measureText(max.toString())
+		let min_l = this.ctx.measureText(min.toString())
+
+		let width = Math.max(max_l.width, min_l.width) / this.canvas.width
+		let height = (max_l.actualBoundingBoxAscent + max_l.actualBoundingBoxDescent + 10) / this.canvas.height
+
+		this.axis.x = width * 5
+		this.axis.y = height * 2
 	}
 
 	// LineChart
