@@ -4,42 +4,33 @@ class Chart {
 	constructor(id) {
 		this.canvas = document.getElementById(id)
 		this.ctx = this.canvas.getContext('2d')
-		this.axis = {
-			x: 0.0,
-			y: 0.0
-		}
+		this.setup()
 
+	}
+
+	setup() {
 		// Get the CSS-computed width and height of the canvas
-		const devicePixelRatio = window.devicePixelRatio || 1
+		this.devicePixelRatio = window.devicePixelRatio || 1
 		const computedStyle = getComputedStyle(this.canvas);
 		const cssWidth = parseInt(computedStyle.getPropertyValue('width'), 10);
 		const cssHeight = parseInt(computedStyle.getPropertyValue('height'), 10);
 
-		this.canvas.x = cssWidth
-		this.canvas.y = cssHeight
-
-		// improve the pixel ratio
-		this.canvas.width = Math.floor(cssWidth * devicePixelRatio)
-		this.canvas.height = Math.floor(cssHeight * devicePixelRatio)
-
 		this.line = {
-			color: 'black',
-			width: 1,
+			color: computedStyle.getPropertyValue('--lineColor'),
+			width: computedStyle.getPropertyValue('--lineWidth'),
 		}
 
 		this.decorations = {
-			color: 'gray',
-			width: 1,
+			color: computedStyle.getPropertyValue('--decorationColor'),
+			width: computedStyle.getPropertyValue('--decorationWidth'),
 		}
-	}
 
-	/** Set the color and width of the line
-	* @param {string} color - color of the line
-	* @param {number} width - width of the line
-	*/
-	setLine(color, width) {
-		this.line.color = color
-		this.line.width = width
+		this.fontSize = computedStyle.getPropertyValue('--fontSize') * this.canvas.width / (100 * this.devicePixelRatio)
+
+
+		// improve the pixel ratio
+		this.canvas.width = Math.floor(cssWidth * this.devicePixelRatio)
+		this.canvas.height = Math.floor(cssHeight * this.devicePixelRatio)
 	}
 
 	/** Set the color and width of the decorations
@@ -55,19 +46,12 @@ class Chart {
 		this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 	}
 
-	setAxis(x, y) {
-		this.axis = {
-			x: x,
-			y: y
-		}
-	}
-
 	x(x) {
-		return (x - 2 * this.axis.x * x + this.axis.x) * this.canvas.width
+		return (this.canvas.width - 2 * this.axis.x * this.canvas.width) * x + this.axis.x * this.canvas.width
 	}
 
 	y(y) {
-		return (1 - y + 2 * this.axis.y * y - this.axis.y) * this.canvas.height
+		return (this.canvas.height - 2 * this.axis.y * this.canvas.height) * (1 - y) + this.axis.y * this.canvas.height
 	}
 
 	/**
@@ -77,8 +61,9 @@ class Chart {
 	* @param {string} color - color of the line
 	* @param {number} width - width of the line
 	*/
-	lines(points, dash = [], color = this.line.color, width = 1) {
+	lines(points, dash = [], color, width) {
 		this.ctx.strokeStyle = color
+		this.ctx.fillStyle = color
 		this.ctx.lineWidth = width
 
 		points = points.map((point) => {
@@ -97,10 +82,10 @@ class Chart {
 	}
 
 	// write text
-	text(text, x, y, color = 'black', size = 1, padding = 5, font = 'Arial') {
+	text(text, x, y, color = 'black', padding = 5) {
 		this.ctx.fillStyle = color
-		size = size * this.canvas.width / 500
-		this.ctx.font = `${size}em ${font}`
+		let p_font = this.ctx.font
+		this.ctx.font = `${this.fontSize}em Arial`
 
 		if (typeof text === 'number') {
 			// bug fix
@@ -108,6 +93,7 @@ class Chart {
 		}
 
 		this.ctx.fillText(text, this.x(x) + padding, this.y(y) - padding)
+		this.ctx.font = p_font
 	}
 
 	// draw grid
@@ -115,19 +101,27 @@ class Chart {
 		let x = [[0, 0], [1, 0]]
 		let y = [[0, 0], [0, 1]]
 
-		this.lines(x, [], this.line.color, this.line.color)
+		this.lines(x, [], this.line.color, this.line.width)
 		this.lines(y, [], this.line.color, this.line.width)
 
 		this.text(xLegend, 1, 0, this.line.color, 12)
 		this.text(yLegend, 0, 1, this.line.color, 12)
 	}
 
-	setMax(max) {
+	setMaxMin(max, min) {
 		this.max = max
-	}
-
-	setMin(min) {
 		this.min = min
+
+		let max_l = this.ctx.measureText(max.toFixed(0).toString())
+		let min_l = this.ctx.measureText(min.toFixed(0).toString())
+
+		let width = Math.max(max_l.width, min_l.width) / this.canvas.width
+		let height = (max_l.actualBoundingBoxAscent + max_l.actualBoundingBoxDescent + 10) / this.canvas.height
+
+		this.axis = {
+			x: width * 5,
+			y: height * 2
+		}
 	}
 
 	// LineChart
@@ -168,8 +162,8 @@ class Chart {
 	*/
 	hover(transazioni, mouseX) {
 		const rect = this.canvas.getBoundingClientRect()
-		mouseX = (mouseX - rect.left) - this.canvas.width * this.axis.x
-		mouseX = mouseX / (this.canvas.width * (1 - 2 * this.axis.x))
+		mouseX = (mouseX - rect.left) - this.axis.x * this.canvas.width / this.devicePixelRatio
+		mouseX /= (1 - 2 * this.axis.x) * this.canvas.width / this.devicePixelRatio
 
 		// if the mouse is outside the canvas, do nothing
 		if (mouseX < 0 || mouseX > 1) {
@@ -199,8 +193,6 @@ class Chart {
 	// BarChart
 
 	drawRect(x, y, width, height, color) {
-		this.drawAxis()
-
 		y = y * height
 		// Y = (1 - y + 2 * this.axis.y * y - this.axis.y) * this.canvas.height
 		// Y / this.canvas.height = (1 - y + 2 * this.axis.y * y - this.axis.y)

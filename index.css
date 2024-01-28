@@ -234,6 +234,15 @@ button:hover
     box-sizing: border-box;
 }
 
+#line-chart {
+	width: 50%;
+	--fontSize: 1;
+	--lineColor: var(--textColor);
+	--lineWidth: 2;
+	--decorationColor: var(--linkHoverColor);
+	--decorationWidth: 1;
+}
+
 @media (max-width: 1280px) {
     .allert
     {
@@ -252,6 +261,7 @@ button:hover
         border-radius: 10px;
     }
 }
+
 @media (max-width: 458px) {
     header h1{
     border: none;

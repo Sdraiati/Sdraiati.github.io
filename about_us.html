@@ -6,7 +6,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title> {{ Title }} </title>
-	<base href="./" />
+	<base href="/" />
 	<meta name="description" content="un sito per mostrare cose">
 	<meta name="keywords" content="sito, cose, dati, UN BEL GRAFICONE A TORTA">
 	<link rel="stylesheet" type="text/css" href="index.css">
@@ -19,10 +19,10 @@
 		<a href="index.html"><img src="assets/img/logo.jpeg" alt="logo"></a>
 	</div>
 	<div class="Login">
-		<ul>
+		<ul class="login-list">
 			<li><button data-button-kind="accedi">Accedi</button></li>
 			<li><button data-button-kind="registrati">Registrati</button></li>
-			<li><a href="account_home.html" id="utente">Utente</a></li>
+			<li class="hidden"><a href="account_home.html" id="utente">Utente</a></li>
 		</ul>
 </nav>
 
@@ -53,6 +53,8 @@
 		<button type="submit" id="submitRegistrati">Registrati</button>
 	</form>
 </section>
+
+<script type="module" src="assets/js/nav.js"></script>
 
 
 	<header>
