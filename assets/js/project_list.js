@@ -4,6 +4,7 @@ function add_progetto(parent, name, id) {
 	progetto.href = "project/" + id
 
 	progetto.addEventListener("click", (event) => {
+		// should be a post with the id of the user in the body
 		fetch(event.target.href)
 			.then(response => response.text()) // Convert the response to text
 			.then(html => {
@@ -44,3 +45,19 @@ get_progetti()
 	.then((value) =>
 		value.forEach(proj => add_progetto(projs, proj.name, proj.id)))
 	.catch(error => console.error(error))
+
+form.addEventListener('submit', function(event) {
+	event.preventDefault();
+
+	let inputNomeProgetto = document.getElementById('inputNomeProgetto').value;
+	let inputDescrizioneProgetto = document.getElementById('inputDescrizioneProgetto').value;
+
+	let projectData = {
+		id: sessionStorage.getItem("user"),
+		nomeProgetto: inputNomeProgetto,
+		descrizioneProgetto: inputDescrizioneProgetto
+	};
+
+	console.log(JSON.stringify(projectData));
+	// TODO: send request to server
+});

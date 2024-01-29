@@ -36,7 +36,7 @@
 		<label for="loginPassword">Password:</label>
 		<input type="password" id="loginPassword" name="password" required autocomplete="current-password">
 		<button type="button" data-button-kind="accediHide">Annulla</button>
-		<button type="submit" id="loginAccedi">Accedi</button>
+		<button type="submit">Accedi</button>
 	</form>
 </section>
 
@@ -49,10 +49,11 @@
 		<input type="email" id="signupEmail" name="email" required autocomplete="email">
 		<label for="signupPassword">Password:</label>
 		<input type="password" id="signupPassword" name="password" required autocomplete="new-password">
+		<span id="passwordError" class="hidden">Le due password non coincidono.</span>
 		<label for="signupConfirmPassword">Ripeti Password:</label>
 		<input type="password" id="signupConfirmPassword" name="password" required autocomplete="new-password">
 		<button type="button" data-button-kind="registratiHide">Annulla</button>
-		<button type="submit" id="submitRegistrati">Registrati</button>
+		<button type="submit">Registrati</button>
 	</form>
 </section>
 
@@ -127,21 +128,6 @@
 		</thead>
 		<!-- Corpo della tabella -->
 		<tbody>
-			<tr>
-				<td>01/01/2025</td>
-				<td>20.00</td>
-				<td>Alimentari</td>
-				<td>Spesa generica 1</td>
-				<td><button data-button-kind="editTransaction" data-transazione-index="1">Modifica</button></td>
-			</tr>
-			<tr>
-				<td>05/01/2026</td>
-				<td>15.50</td>
-				<td>Trasporti</td>
-				<td>Spesa generica 2</td>
-				<td><button data-button-kind="editTransaction" data-transazione-index="2">Modifica</button></td>
-			</tr>
-			<!-- Aggiungi altre righe della tabella, se necessario -->
 		</tbody>
 	</table>
 </section>
@@ -155,13 +141,12 @@
 		<label for="newImporto">Importo:</label>
 		<input type="number" id="newImporto" name="importo" step="0.01" required>
 		<label for="newTag">Tag:</label>
-		<input list="tags" id="newTag" name="tag" required>
+		<input list="tags-datalist" id="newTag" name="tag" required>
 		<!-- Datalist per i tag -->
-		<datalist data-datalist="tag">
-			<!-- Inserisci qui i tag, dinamicamente -->
+		<datalist id="tags-datalist">
 		</datalist>
 		<label for="newDescrizione">Descrizione:</label>
-		<input type="text" id="newDescrizione" name="descrizione" required>
+		<input type="text" id="newDescrizione" name="descrizione">
 		<button type="button" data-button-kind="newTransactionHide">Annulla</button>
 		<button type="submit" id="submitNewTransaction">Registra Transazione</button>
 	</form>
@@ -176,11 +161,7 @@
 		<label for="editCosto">Nuovo Importo (€):</label>
 		<input type="number" id="editCosto" name="costo" step="0.01">
 		<label for="editTag">Nuovo Tag:</label>
-		<input list="tags" id="editTag" name="tag" required>
-		<!-- Datalist per i tag -->
-		<datalist data-datalist="tag">
-			<!-- Inserisci qui i tag, dinamicamente -->
-		</datalist>
+		<input list="tags-datalist" id="editTag" name="tag" required>
 		<label for="editDescrizione">Nuova Descrizione:</label>
 		<input type="text" id="editDescrizione" name="descrizione">
 		<div class="form-buttons">

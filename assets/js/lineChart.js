@@ -46,7 +46,6 @@ function getPeriod() {
 * @param {Transazione[]} transazioni - Array di transazioni
 */
 function draw_chart(transazioni) {
-	console.log(BEGIN, END)
 	let transactions = transazioni.filter((transazione) => {
 		return BEGIN <= transazione.data &&
 			transazione.data <= END
