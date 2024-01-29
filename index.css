@@ -292,7 +292,7 @@ button:hover
     footer .footer-list
     {
         padding: var(--paddingElementsSmall);;
-        padding-top: 20px;
+        padding-top: 20px;/**/
     }
 
 
