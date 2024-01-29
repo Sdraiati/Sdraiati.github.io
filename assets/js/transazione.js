@@ -60,24 +60,24 @@ class Transazione {
 		}
 
 		// Convert the parsed data back into an array of Transazione objects
-		return transazioni.map((obj) =>
+		let res = transazioni.map((obj) =>
 			new Transazione(
 				new Date(obj.data),
 				obj.importo,
 				obj.tag,
 				obj.descrizione)
 		)
+
+		if (Transazione.tag != null) {
+			res = res.filter((transazione) => transazione.tag == Transazione.tag)
+		}
+
+		return res
 	}
 
 	static setTag(tag) {
-		if (tag == null) {
-			Transazione.update(Transazione.get())
-			return;
-		}
-		let filtered = Transazione.get().filter(
-			(transazione) => transazione.tag == tag
-		);
-		Transazione.update(filtered);
+		this.tag = tag
+		Transazione.update();
 	}
 
 	/** Aggiunge un observer alla lista degli observer
@@ -90,8 +90,8 @@ class Transazione {
 	/** Update the observers
 	* @param {Transazione[]} transazioni - Array di oggetti Transazione
 	*/
-	static update(transazioni) {
-		transazioni_observers_fn.forEach((observer_fn) => observer_fn(transazioni));
+	static update() {
+		transazioni_observers_fn.forEach((observer_fn) => observer_fn(Transazione.get()));
 	}
 }
 

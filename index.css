@@ -243,6 +243,11 @@ button:hover
 	--decorationWidth: 1;
 }
 
+button[disabled] {
+    opacity: 0.5; /* Dim the button */
+    cursor: not-allowed; /* Show disabled cursor */
+}
+
 @media (max-width: 1280px) {
     .allert
     {
