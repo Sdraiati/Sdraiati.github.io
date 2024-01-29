@@ -17,6 +17,7 @@
     --fontSizeTitleH3: 1.5em;
     --paddingElements: 20px;
     --paddingElementsSmall: 10px;
+    --withPopUp: 20%;
 }
 html{
     font-family: var(--fontFamily);
@@ -61,6 +62,8 @@ h1, h2 {
 
 ul{
     list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 nav {
@@ -184,7 +187,7 @@ button:hover
 .hidden{
     display: none;
 }
-
+/*
 .overlay
 {
     position: fixed;
@@ -196,7 +199,8 @@ button:hover
     justify-content: center;
     align-items: center;
     z-index: 1;
-}
+}*/
+
 .allert
 {
     text-align: center;
@@ -205,13 +209,14 @@ button:hover
     justify-content: center;
     position: fixed;
     z-index: 200;
-    width: 20%;
+    width: var(--withPopUp);
     background-color: var(--popUpColor);
     padding: 5%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
+    box-shadow: 0 0 0 (100%+(100%-var(--withPopUp))) rgba(0, 0, 0, 0.7);
 }
 
 .allert .form-buttons{
@@ -241,6 +246,19 @@ button:hover
 	--lineWidth: 2;
 	--decorationColor: var(--linkHoverColor);
 	--decorationWidth: 1;
+}
+
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap:20px;
+    align-items: start;
+    padding-block: var(--paddingElements);
+}
+
+.grid-container div{
+    flex: 40%;
 }
 
 @media (max-width: 1280px) {
@@ -295,7 +313,6 @@ button:hover
         padding-top: 20px;/**/
     }
 
-
     nav ul
     {
         display: grid;
@@ -314,9 +331,44 @@ button:hover
     section{
         padding: var(--paddingElementsSmall);
     }
-}
 
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto;
+    .grid-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        flex-direction: column;
+        gap:20px;
+        align-items: start;
+        padding-block: var(--paddingElements);
+    }
+
+    .grid-container .grid-item:nth-child(1)
+    {
+        order: 1;
+    }
+
+    .grid-container .grid-item:nth-child(2)
+    {
+        order: 2;
+    }
+
+    .grid-container .grid-item:nth-child(3)
+    {
+        order:4;
+    }
+
+    .grid-container .grid-item:nth-child(4)
+    {
+        order:3;
+    }
+
+    .grid-container .grid-item:nth-child(5)
+    {
+        order:5;
+    }
+
+    .grid-container .grid-item:nth-child(6)
+    {
+        order:6;
+    }
 }
