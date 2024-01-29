@@ -8,11 +8,11 @@ document.body.addEventListener("click", function(event) {
 			return
 		} else if (id.endsWith("Hide")) {
 			id = id.replace("Hide", "")
-			var section = document.getElementById(id)
+			let section = document.getElementById(id)
 			section.classList.remove("allert")
 			section.classList.add("hidden")
 		} else {
-			var section = document.getElementById(id)
+			let section = document.getElementById(id)
 			section.classList.remove("hidden")
 			section.classList.add("allert")
 		}

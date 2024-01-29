@@ -33,7 +33,7 @@
 		<label for="loginPassword">Password:</label>
 		<input type="password" id="loginPassword" name="password" required autocomplete="current-password">
 		<button type="button" data-button-kind="accediHide">Annulla</button>
-		<button type="submit" id="loginAccedi">Accedi</button>
+		<button type="submit">Accedi</button>
 	</form>
 </section>
 
@@ -46,10 +46,11 @@
 		<input type="email" id="signupEmail" name="email" required autocomplete="email">
 		<label for="signupPassword">Password:</label>
 		<input type="password" id="signupPassword" name="password" required autocomplete="new-password">
+		<span id="passwordError" class="hidden">Le due password non coincidono.</span>
 		<label for="signupConfirmPassword">Ripeti Password:</label>
 		<input type="password" id="signupConfirmPassword" name="password" required autocomplete="new-password">
 		<button type="button" data-button-kind="registratiHide">Annulla</button>
-		<button type="submit" id="submitRegistrati">Registrati</button>
+		<button type="submit">Registrati</button>
 	</form>
 </section>
 
@@ -84,8 +85,6 @@
 	<form>
 		<label for="newTagName">Nome</label>
 		<input type="text" id="newTagName" name="tagName" placeholder="Nome del Tag" required>
-		<!-- <label for="tagColor">Colore</label>
-		<input type="color" id="tagColor" name="tagColor" required> -->
 		<label for="newTagDescription">Descrizione</label>
 		<textarea id="newTagDescription" name="tagDescription" placeholder="Descrizione del Tag" required></textarea>
 		<button type="button" data-button-kind="newTagHide">Annulla</button>
@@ -98,8 +97,6 @@
 	<form>
 		<label for="editTagName">Nuovo Nome</label>
 		<input type="text" id="editTagName" name="tagName" placeholder="Nome del Tag" required>
-		<!-- <label for="tagColor">Colore</label>
-		<input type="color" id="tagColor" name="tagColor" required> -->
 		<label for="editTagDescription">Nuova Descrizione</label>
 		<textarea id="editTagDescription" name="tagDescription" placeholder="Descrizione del Tag" required></textarea>
 		<button type="button" data-button-kind="editTagHide">Annulla</button>

@@ -11,3 +11,38 @@ get_account_info().then((account_info) => {
 }).catch((error) => {
 	console.log(error)
 })
+
+document.getElementById('modificaCredenzialiForm')
+	.addEventListener('submit', function(event) {
+		event.preventDefault();
+
+		let newEmail = document.getElementById('newEmail').value;
+		let newUsername = document.getElementById('newUsername').value;
+		let newPassword = document.getElementById('newPassword').value;
+		let confirmNewPassword = document.getElementById('confirmNewPassword').value;
+
+		if (newPassword !== confirmNewPassword) {
+			document.getElementById("confirmNewPassword")
+				.setCustomValidity("Le password non coincidono")
+			return
+		}
+
+		let userData;
+		if (newPassword !== "") {
+			userData = {
+				password: newPassword,
+			}
+		}
+		if (newEmail !== "") {
+			userData = {
+				email: newEmail,
+			}
+		}
+		if (newUsername !== "") {
+			userData = {
+				username: newUsername,
+			}
+		}
+		console.log(JSON.stringify(userData));
+		// TODO: send request to server
+	});

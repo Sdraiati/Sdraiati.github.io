@@ -16,11 +16,30 @@ function setPeriod(days) {
 }
 
 /** Cambia la data di fine
-* @param {Date} end - Data di fine
+* @param {boolean} flag -
+* - se true, la data di fine e di inizio sono spostate in avanti di un periodo
+* - se false, le due date sono spostate indietro di un periodo
 */
-function setEnd(end) {
-	END = end
+function nextPeriod(flag) {
+	let period = END.getTime() - BEGIN.getTime()
+	if (flag) {
+		BEGIN = END
+		END = new Date(END.getTime() + period)
+	} else {
+		END = BEGIN
+		BEGIN = new Date(BEGIN.getTime() - period)
+	}
 	Transazione.update()
+}
+
+/** Ritorna la data di fine e il periodo
+* @returns {{end: Date, period: number}} - Oggetto che rappresenta la data di fine e il periodo
+*/
+function getPeriod() {
+	return {
+		end: END,
+		begin: BEGIN,
+	}
 }
 
 /** Disegna il grafico
@@ -100,4 +119,4 @@ function drawLineChart(chart, saldi) {
 		})
 }
 
-export { setPeriod, setEnd, draw_chart }
+export { setPeriod, nextPeriod, getPeriod, draw_chart }

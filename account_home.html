@@ -34,7 +34,7 @@
 		<label for="loginPassword">Password:</label>
 		<input type="password" id="loginPassword" name="password" required autocomplete="current-password">
 		<button type="button" data-button-kind="accediHide">Annulla</button>
-		<button type="submit" id="loginAccedi">Accedi</button>
+		<button type="submit">Accedi</button>
 	</form>
 </section>
 
@@ -47,10 +47,11 @@
 		<input type="email" id="signupEmail" name="email" required autocomplete="email">
 		<label for="signupPassword">Password:</label>
 		<input type="password" id="signupPassword" name="password" required autocomplete="new-password">
+		<span id="passwordError" class="hidden">Le due password non coincidono.</span>
 		<label for="signupConfirmPassword">Ripeti Password:</label>
 		<input type="password" id="signupConfirmPassword" name="password" required autocomplete="new-password">
 		<button type="button" data-button-kind="registratiHide">Annulla</button>
-		<button type="submit" id="submitRegistrati">Registrati</button>
+		<button type="submit">Registrati</button>
 	</form>
 </section>
 
@@ -77,11 +78,15 @@
 	<h2>Modifica informazioni dell'account</h2>
 	<form id="modificaCredenzialiForm" action="javascript:void(0)">
 		<label for="newEmail">Nuova Email:</label>
-		<input type="email" id="newEmail" name="newEmail" required>
+		<input type="email" id="newEmail" name="newEmail">
 		<label for="newUsername">Nuovo Nome Utente:</label>
-		<input type="text" id="newUsername" name="newUsername" required>
+		<input type="text" id="newUsername" name="newUsername">
 		<label for="newPassword">Nuova Password:</label>
-		<input type="password" id="newPassword" name="newPassword" required>
+		<input type="password" id="newPassword" name="newPassword">
+		<label for="confirmNewPassword">Conferma Nuova Password:</label>
+		<input type="password" id="confirmNewPassword" name="confirmNewPassword">
+		<label for="oldPassword">Vecchia Password:</label>
+		<input type="password" id="oldPassword" name="oldPassword" required>
 		<button type="button" data-button-kind="modificaCredenzialiHide">Annulla</button>
 		<button type="submit" id="submitModificaCredenziali">Salva Modifiche</button>
 	</form>
