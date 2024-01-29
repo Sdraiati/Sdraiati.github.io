@@ -23,6 +23,7 @@ html{
     font-family: var(--fontFamily);
     font-size: var(--fontSizeDefault);
 }
+
 body {
     background-color: var(--backgroundColor);
     color: var(--textColor);
