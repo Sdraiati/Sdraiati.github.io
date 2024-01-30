@@ -223,7 +223,7 @@ button[disabled]
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
-    box-shadow: 0 0 0 1000% rgba(0, 0, 0, 0.7);/*(100%+(100%-var(--withPopUp)))*/
+    box-shadow: 0 0 0 100vh rgba(0, 0, 0, 0.7);
 }
 
 .allert .form-buttons{
