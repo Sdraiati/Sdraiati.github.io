@@ -17,8 +17,9 @@
     --fontSizeTitleH3: 1.5em;
     --paddingElements: 20px;
     --paddingElementsSmall: 10px;
-    --withPopUp: 20%;
 }
+
+
 html{
     font-family: var(--fontFamily);
     font-size: var(--fontSizeDefault);
@@ -38,6 +39,25 @@ body {
 main{
     padding: var(--paddingElements);
     padding-bottom: var(--footerHeight); 
+}
+
+section#first-para{
+    padding: 120px;
+    font-size: var(--fontSizeTitleH3);
+}
+
+section#first-para div
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap:100px
+}
+
+section#first-para div p{
+    width: 50%;
 }
 
 header {
@@ -170,6 +190,7 @@ button{
     display: inline-block;
     border-radius: 10px;
     cursor: pointer;
+    margin-block: 20px;
 }
 button:hover
 {
