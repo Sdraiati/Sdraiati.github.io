@@ -99,113 +99,119 @@
 	</form>
 </section>
 
-<!-- Condividi Progetto -->
-<section id="shareProject" class="hidden">
-	<h2>Condividi Progetto</h2>
-	<form id="linkForm">
-		<input type="text" id="linkField" value="https://example.com" readonly>
-		<button type="button" data-button-kind="shareProjectHide">Annulla</button>
-		<button type="button" id="copyShareProject">Copy Link</button>
-	</form>
-</section>
+<main>
+	<!-- Condividi Progetto -->
+	<section id="shareProject" class="hidden">
+		<h2>Condividi Progetto</h2>
+		<form id="linkForm">
+			<input type="text" id="linkField" value="https://example.com" readonly>
+			<button type="button" data-button-kind="shareProjectHide">Annulla</button>
+			<button type="button" id="copyShareProject">Copy Link</button>
+		</form>
+	</section>
+
+	<section id="chart">
+		<ul id="line-chart-buttons">
+			<li><button id="transazioni-precedenti">Precedente</button></li>
+			<li><button id="transazioni-periodo-1-mese">1 mese</button></li>
+			<li><button id="transazioni-periodo-6-mesi">6 mesi</button></li>
+			<li><button id="transazioni-periodo-1-anno">1 anno</button></li>
+			<li><button id="transazioni-successive">Successivo</button></li>
+		</ul>
+		<!-- Canvas per il line chart -->
+		<canvas id="line-chart" class="line-chart"></canvas>
+		<!-- Tabella delle transazioni -->
+	</section>
+
+	<section>
+		<h2>Tabella delle Transazioni</h2>
+		<button data-button-kind="newTransaction">Nuova Transazione</button>
+		<!-- Inserisci qui la tabella delle transazioni -->
+		<table id="transazioniTable">
+			<!-- Intestazione della tabella -->
+			<thead>
+				<tr>
+					<th>Data</th>
+					<th>Costo (€)</th>
+					<th>Tag</th>
+					<th>Descrizione</th>
+				</tr>
+			</thead>
+			<!-- Corpo della tabella -->
+			<tbody>
+			</tbody>
+		</table>
+	</section>
+
+	<!-- Registra una Nuova Transazione -->
+	<section id="newTransaction" class="hidden">
+		<h2>Registra una Nuova Transazione</h2>
+		<form id="newTransactionForm" action="javascript:void(0)">
+			<label for="newData">Data:</label>
+			<input type="date" id="newData" name="data" required>
+			<label for="newImporto">Importo:</label>
+			<input type="number" id="newImporto" name="importo" step="0.01" required>
+			<label for="newTag">Tag:</label>
+			<input list="tags-datalist" id="newTag" name="tag" required>
+			<!-- Datalist per i tag -->
+			<datalist id="tags-datalist">
+			</datalist>
+			<label for="newDescrizione">Descrizione:</label>
+			<input type="text" id="newDescrizione" name="descrizione">
+			<button type="button" data-button-kind="newTransactionHide">Annulla</button>
+			<button type="submit" id="submitNewTransaction">Registra Transazione</button>
+		</form>
+	</section>
+
+	<!-- Modifica Transazione -->
+	<section id="editTransaction" class="hidden">
+		<h2>Modifica Transazione</h2>
+		<form id="editTransactionForm" action="javascript:void(0)">
+			<label for="editData">Nuova Data:</label>
+			<input type="date" id="editData" name="data">
+			<label for="editCosto">Nuovo Importo (€):</label>
+			<input type="number" id="editCosto" name="costo" step="0.01">
+			<label for="editTag">Nuovo Tag:</label>
+			<input list="tags-datalist" id="editTag" name="tag" required>
+			<label for="editDescrizione">Nuova Descrizione:</label>
+			<input type="text" id="editDescrizione" name="descrizione">
+			<div class="form-buttons">
+				<button type="button" id="deleteTransazioneButton">Elimina Transazione</button>
+				<button type="button" data-button-kind="editTransactionHide">Annulla</button>
+				<button type="submit" id="submitEditTransaction">Salva Modifiche</button>
+			</div>
+		</form>
+	</section>
+
+	<script type="module" src="assets/js/transazioni_list.js"></script>
 
 
-	<ul id="line-chart-buttons">
-		<li><button id="transazioni-precedenti">Precedente</button></li>
-		<li><button id="transazioni-periodo-1-mese">1 mese</button></li>
-		<li><button id="transazioni-periodo-6-mesi">6 mesi</button></li>
-		<li><button id="transazioni-periodo-1-anno">1 anno</button></li>
-		<li><button id="transazioni-successive">Successivo</button></li>
-	</ul>
-	<!-- Canvas per il line chart -->
-	<canvas id="line-chart" class="line-chart"></canvas>
-<!-- Tabella delle transazioni -->
-<section>
-	<h2>Tabella delle Transazioni</h2>
-	<button data-button-kind="newTransaction">Nuova Transazione</button>
-	<!-- Inserisci qui la tabella delle transazioni -->
-	<table id="transazioniTable">
-		<!-- Intestazione della tabella -->
-		<thead>
-			<tr>
-				<th>Data</th>
-				<th>Costo (€)</th>
-				<th>Tag</th>
-				<th>Descrizione</th>
-			</tr>
-		</thead>
-		<!-- Corpo della tabella -->
-		<tbody>
-		</tbody>
-	</table>
-</section>
+	<!-- Filtri per tag -->
+	<aside class="filtri-tag-container">
+		<a href="project_cake.html">Vai al Grafico a Torta</a>
+		<h2>Filtri per Tag</h2>
+		<!-- Inserisci qui i filtri per tag -->
+		<form id="tag_sidebar">
+		</form>
 
-<!-- Registra una Nuova Transazione -->
-<section id="newTransaction" class="hidden">
-	<h2>Registra una Nuova Transazione</h2>
-	<form id="newTransactionForm" action="javascript:void(0)">
-		<label for="newData">Data:</label>
-		<input type="date" id="newData" name="data" required>
-		<label for="newImporto">Importo:</label>
-		<input type="number" id="newImporto" name="importo" step="0.01" required>
-		<label for="newTag">Tag:</label>
-		<input list="tags-datalist" id="newTag" name="tag" required>
-		<!-- Datalist per i tag -->
-		<datalist id="tags-datalist">
-		</datalist>
-		<label for="newDescrizione">Descrizione:</label>
-		<input type="text" id="newDescrizione" name="descrizione">
-		<button type="button" data-button-kind="newTransactionHide">Annulla</button>
-		<button type="submit" id="submitNewTransaction">Registra Transazione</button>
-	</form>
-</section>
+		<a href="tag_page.html">Vai alla Pagina dei Tag</a>
+	</aside>
 
-<!-- Modifica Transazione -->
-<section id="editTransaction" class="hidden">
-	<h2>Modifica Transazione</h2>
-	<form id="editTransactionForm" action="javascript:void(0)">
-		<label for="editData">Nuova Data:</label>
-		<input type="date" id="editData" name="data">
-		<label for="editCosto">Nuovo Importo (€):</label>
-		<input type="number" id="editCosto" name="costo" step="0.01">
-		<label for="editTag">Nuovo Tag:</label>
-		<input list="tags-datalist" id="editTag" name="tag" required>
-		<label for="editDescrizione">Nuova Descrizione:</label>
-		<input type="text" id="editDescrizione" name="descrizione">
-		<div class="form-buttons">
-			<button type="button" id="deleteTransazioneButton">Elimina Transazione</button>
-			<button type="button" data-button-kind="editTransactionHide">Annulla</button>
-			<button type="submit" id="submitEditTransaction">Salva Modifiche</button>
-		</div>
-	</form>
-</section>
+	<script type="module" src="assets/js/tag_sidebar.js"></script>
 
-<script type="module" src="assets/js/transazioni_list.js"></script>
+	<!-- Partecipanti -->
+	<aside class="partecipanti-container">
+		<h2>Partecipanti</h2>
+		<!-- Inserisci qui l'elenco dei partecipanti -->
+		<ul id="partecipanti-list">
+		</ul>
+	</aside>
 
-<!-- Filtri per tag -->
-<aside class="filtri-tag-container">
-	<a href="project_cake.html">Vai al Grafico a Torta</a>
-	<h2>Filtri per Tag</h2>
-	<!-- Inserisci qui i filtri per tag -->
-	<form id="tag_sidebar">
-	</form>
+	<script type="module" src="assets/js/partecipanti_sidebar.js"></script>
 
-	<a href="tag_page.html">Vai alla Pagina dei Tag</a>
-</aside>
+	<script src="assets/js/footerColors.js"></script>
+</main>
 
-<script type="module" src="assets/js/tag_sidebar.js"></script>
-
-<!-- Partecipanti -->
-<aside class="partecipanti-container">
-	<h2>Partecipanti</h2>
-	<!-- Inserisci qui l'elenco dei partecipanti -->
-	<ul id="partecipanti-list">
-	</ul>
-</aside>
-
-<script type="module" src="assets/js/partecipanti_sidebar.js"></script>
-
-<script src="assets/js/footerColors.js"></script>
 <footer>
 	<div class="footer-list">
 		<h3>Prodotto</h3>

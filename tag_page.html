@@ -62,52 +62,52 @@
 		<h1>{{ Project Name }} - Tag</h1>
 	</header>
 
-	<main>
+<main>
 <!-- tabella dei tag -->
-<section>
-	<h2>Tabella dei Tag</h2>
-	<button data-button-kind="newTag">Nuovo Tag</button>
+	<section>
+		<h2>Tabella dei Tag</h2>
+		<button data-button-kind="newTag">Nuovo Tag</button>
 
-	<table id="tag-table">
-		<thead>
-			<tr>
-				<th>Nome</th>
-				<!-- <th>Colore</th> -->
-				<th>Descrizione</th>
-			</tr>
-		</thead>
-		<tbody>
-		</tbody>
-	</table>
-</section>
+		<table id="tag-table">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<!-- <th>Colore</th> -->
+					<th>Descrizione</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</section>
 
-<section id="newTag" class="hidden" action="javascript:void(0)">
-	<h2>Nuovo Tag</h2>
-	<form>
-		<label for="newTagName">Nome</label>
-		<input type="text" id="newTagName" name="tagName" placeholder="Nome del Tag" required>
-		<label for="newTagDescription">Descrizione</label>
-		<textarea id="newTagDescription" name="tagDescription" placeholder="Descrizione del Tag" required></textarea>
-		<button type="button" data-button-kind="newTagHide">Annulla</button>
-		<button type="submit" id="submitNewTag">Salva</button>
-	</form>
-</section>
+	<section id="newTag" class="hidden" action="javascript:void(0)">
+		<h2>Nuovo Tag</h2>
+		<form>
+			<label for="newTagName">Nome</label>
+			<input type="text" id="newTagName" name="tagName" placeholder="Nome del Tag" required>
+			<label for="newTagDescription">Descrizione</label>
+			<textarea id="newTagDescription" name="tagDescription" placeholder="Descrizione del Tag" required></textarea>
+			<button type="button" data-button-kind="newTagHide">Annulla</button>
+			<button type="submit" id="submitNewTag">Salva</button>
+		</form>
+	</section>
 
-<section id="editTag" class="hidden" action="javascript:void(0)">
-	<h2>Modifica Tag</h2>
-	<form>
-		<label for="editTagName">Nuovo Nome</label>
-		<input type="text" id="editTagName" name="tagName" placeholder="Nome del Tag" required>
-		<label for="editTagDescription">Nuova Descrizione</label>
-		<textarea id="editTagDescription" name="tagDescription" placeholder="Descrizione del Tag" required></textarea>
-		<button type="button" data-button-kind="editTagHide">Annulla</button>
-		<button type="submit" id="submitEditTag">Salva</button>
-	</form>
-</section>
+	<section id="editTag" class="hidden" action="javascript:void(0)">
+		<h2>Modifica Tag</h2>
+		<form>
+			<label for="editTagName">Nuovo Nome</label>
+			<input type="text" id="editTagName" name="tagName" placeholder="Nome del Tag" required>
+			<label for="editTagDescription">Nuova Descrizione</label>
+			<textarea id="editTagDescription" name="tagDescription" placeholder="Descrizione del Tag" required></textarea>
+			<button type="button" data-button-kind="editTagHide">Annulla</button>
+			<button type="submit" id="submitEditTag">Salva</button>
+		</form>
+	</section>
 
 <script type="module" src="assets/js/tag_list.js"></script>
 
-	</main>
+</main>
 <script src="assets/js/footerColors.js"></script>
 <footer>
 	<div class="footer-list">

@@ -68,7 +68,7 @@ header {
 header h1{
     font-size: var(--fontSizeTitleH1);
     border-style: solid;
-    width: 600px;
+    width: fit-content;
     margin: auto;
 }
 
@@ -86,6 +86,24 @@ ul{
     margin: 0;
     padding: 0;
 }
+
+ul#line-chart-buttons
+{
+    display: flex;
+    gap:10px;
+    flex-wrap: wrap;
+}
+
+section#chart{
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+section#chart canvas#line-chart{
+    font-size: 1em;
+}
+
 
 nav {
     display: flex;
@@ -147,7 +165,7 @@ a:hover {
     font-weight: bold;
 }
 
-section {
+section, aside {
     padding: var(--paddingElements);;
 }
 
@@ -288,6 +306,23 @@ button[disabled]
 .container div{
     flex: 40%;
 }
+
+div#error404{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div#error404 img{
+    width: 30%;
+}
+
+div#error404 h1{
+    opacity: 0.5;
+}
+
 
 @media (max-width: 1280px) {
     .allert
